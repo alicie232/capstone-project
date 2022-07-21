@@ -4,8 +4,8 @@ export default function DailyTaskList() {
 }
 
 const dailyTasks = [
-  'Betten machen',
   'Räume lüften',
+  'Betten machen',
   'Spülmaschine ausräumen',
   'Wäsche machen',
   'Müll rausbringen',
