@@ -1,3 +1,4 @@
+import styled from 'styled-components';
 import DailyTaskList from './DailyTaskList';
 
 export default function DailyTasks() {
@@ -8,7 +9,13 @@ export default function DailyTasks() {
         Deine tägliche Aufgaben. <br />
         Schnell und mit wenigen Handgriffen erledigt.
       </p>
-      <DailyTaskList />
+      <Wrapper>
+        <DailyTaskList />
+      </Wrapper>
     </>
   );
 }
+
+const Wrapper = styled.div`
+  border: 1px solid;
+`;
