@@ -3,11 +3,9 @@ import DailyTasks from './components/DailyTasks';
 
 export default function App() {
   return (
-    <>
-      <Wrapper>
-        <DailyTasks />
-      </Wrapper>
-    </>
+    <Wrapper>
+      <DailyTasks />
+    </Wrapper>
   );
 }
 
