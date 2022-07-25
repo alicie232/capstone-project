@@ -1,21 +1,22 @@
+import {nanoid} from 'nanoid';
 import styled from 'styled-components';
 import TaskList from './TaskList';
 
-const dailyTasks = [
-  'Räume lüften',
-  'Betten machen',
-  'Spülmaschine ausräumen',
-  'Wäsche machen',
-  'Müll rausbringen',
-  'Böden saugen',
-  'ungenutzte Dinge wegräumen',
-  'Waschbecken im Bad reinigen',
-  'Toilette im Bad reinigen',
-  'Arbeitsflächen in der Küche abwischen',
-  'volle Spülmaschine anschalten',
-];
-
 export default function DailyTasks() {
+  const dailyTasks = [
+    {task: 'Räume lüften', id: nanoid()},
+    {task: 'Betten machen', id: nanoid()},
+    {task: 'Spülmaschine ausräumen', id: nanoid()},
+    {task: 'Wäsche machen', id: nanoid()},
+    {task: 'Müll rausbringen', id: nanoid()},
+    {task: 'Böden saugen', id: nanoid()},
+    {task: 'ungenutzte Dinge wegräumen', id: nanoid()},
+    {task: 'Waschbecken im Bad reinigen', id: nanoid()},
+    {task: 'Toilette im Bad reinigen', id: nanoid()},
+    {task: 'Arbeitsflächen in der Küche abwischen', id: nanoid()},
+    {task: 'volle Spülmaschine anschalten', id: nanoid()},
+  ];
+
   return (
     <>
       <header>
