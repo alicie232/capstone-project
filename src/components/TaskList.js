@@ -1,10 +1,16 @@
-export default function TaskList({tasks}) {
+export default function TaskList({todos, setTodos}) {
   return (
     <ul>
-      {tasks.map(task => (
-        <li key={task.id}>
-          <input type="checkbox" />
-          {task.task}
+      {todos.map(todo => (
+        <li key={todo.id}>
+          <input
+            type="checkbox"
+            checked={todo.isChecked}
+            onChange={() => {
+              setTodos(todos.map(todo_ => (todo_.id === todo.id ? {...todo_, isChecked: !todo.isChecked} : todo_)));
+            }}
+          />
+          {todo.task}
         </li>
       ))}
     </ul>

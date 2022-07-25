@@ -1,22 +1,23 @@
+import {useState} from 'react';
 import {nanoid} from 'nanoid';
 import styled from 'styled-components';
 import TaskList from './TaskList';
 
 export default function DailyTasks() {
   const dailyTasks = [
-    {task: 'Räume lüften', id: nanoid()},
-    {task: 'Betten machen', id: nanoid()},
-    {task: 'Spülmaschine ausräumen', id: nanoid()},
-    {task: 'Wäsche machen', id: nanoid()},
-    {task: 'Müll rausbringen', id: nanoid()},
-    {task: 'Böden saugen', id: nanoid()},
-    {task: 'ungenutzte Dinge wegräumen', id: nanoid()},
-    {task: 'Waschbecken im Bad reinigen', id: nanoid()},
-    {task: 'Toilette im Bad reinigen', id: nanoid()},
-    {task: 'Arbeitsflächen in der Küche abwischen', id: nanoid()},
-    {task: 'volle Spülmaschine anschalten', id: nanoid()},
+    {task: 'Räume lüften', isChecked: false, id: nanoid()},
+    {task: 'Betten machen', isChecked: false, id: nanoid()},
+    {task: 'Spülmaschine ausräumen', isChecked: false, id: nanoid()},
+    {task: 'Wäsche machen', isChecked: false, id: nanoid()},
+    {task: 'Müll rausbringen', isChecked: false, id: nanoid()},
+    {task: 'Böden saugen', isChecked: false, id: nanoid()},
+    {task: 'ungenutzte Dinge wegräumen', isChecked: false, id: nanoid()},
+    {task: 'Waschbecken im Bad reinigen', isChecked: false, id: nanoid()},
+    {task: 'Toilette im Bad reinigen', isChecked: false, id: nanoid()},
+    {task: 'Arbeitsflächen in der Küche abwischen', isChecked: false, id: nanoid()},
+    {task: 'volle Spülmaschine anschalten', isChecked: false, id: nanoid()},
   ];
-
+  const [todos, setTodos] = useState(dailyTasks);
   return (
     <>
       <header>
@@ -27,7 +28,7 @@ export default function DailyTasks() {
         </p>
       </header>
       <Wrapper>
-        <TaskList tasks={dailyTasks} />
+        <TaskList todos={todos} setTodos={setTodos} />
       </Wrapper>
     </>
   );
