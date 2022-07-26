@@ -1,21 +1,15 @@
+import {useState} from 'react';
 import styled from 'styled-components';
 import TaskList from './TaskList';
-
-const dailyTasks = [
-  'Räume lüften',
-  'Betten machen',
-  'Spülmaschine ausräumen',
-  'Wäsche machen',
-  'Müll rausbringen',
-  'Böden saugen',
-  'ungenutzte Dinge wegräumen',
-  'Waschbecken im Bad reinigen',
-  'Toilette im Bad reinigen',
-  'Arbeitsflächen in der Küche abwischen',
-  'volle Spülmaschine anschalten',
-];
+import dailyTasks from '../db';
 
 export default function DailyTasks() {
+  const [todos, setTodos] = useState(dailyTasks);
+
+  function handleTodos(todoToHandleId) {
+    setTodos(todos.map(todo => (todo.id === todoToHandleId ? {...todo, isChecked: !todo.isChecked} : todo)));
+  }
+
   return (
     <>
       <header>
@@ -26,7 +20,7 @@ export default function DailyTasks() {
         </p>
       </header>
       <Wrapper>
-        <TaskList tasks={dailyTasks} />
+        <TaskList todos={todos} onTodoChange={handleTodos} />
       </Wrapper>
     </>
   );

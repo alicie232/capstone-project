@@ -1,8 +1,11 @@
-export default function TaskList({tasks}) {
+export default function TaskList({todos, onTodoChange}) {
   return (
     <ul>
-      {tasks.map(task => (
-        <li key={task}>{task}</li>
+      {todos.map(({id, isChecked, task}) => (
+        <li key={id} style={{listStyle: 'none'}}>
+          <input type="checkbox" checked={isChecked} onChange={() => onTodoChange(id)} />
+          <span style={{textDecoration: isChecked && 'line-through'}}>{task}</span>
+        </li>
       ))}
     </ul>
   );
