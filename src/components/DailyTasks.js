@@ -6,12 +6,8 @@ import dailyTasks from '../db';
 export default function DailyTasks() {
   const [todos, setTodos] = useState(dailyTasks);
 
-  function handleTodos(todoToHandle) {
-    setTodos(
-      todos.map(todo => {
-        return todo.id === todoToHandle.id ? {...todo, isChecked: !todo.isChecked} : todo;
-      })
-    );
+  function handleTodos(todoToHandleId) {
+    setTodos(todos.map(todo => (todo.id === todoToHandleId ? {...todo, isChecked: !todo.isChecked} : todo)));
   }
 
   return (
