@@ -5,6 +5,11 @@ import dailyTasks from '../db';
 
 export default function DailyTasks() {
   const [todos, setTodos] = useState(dailyTasks);
+
+  function handleTodos(todoToHandle) {
+    setTodos(todos.map(todo => (todo.id === todoToHandle.id ? {...todo, isChecked: !todo.isChecked} : todo)));
+  }
+
   return (
     <>
       <header>
@@ -15,7 +20,7 @@ export default function DailyTasks() {
         </p>
       </header>
       <Wrapper>
-        <TaskList todos={todos} setTodos={setTodos} />
+        <TaskList todos={todos} onTodos={handleTodos} />
       </Wrapper>
     </>
   );
