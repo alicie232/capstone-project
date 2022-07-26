@@ -7,7 +7,11 @@ export default function DailyTasks() {
   const [todos, setTodos] = useState(dailyTasks);
 
   function handleTodos(todoToHandle) {
-    setTodos(todos.map(todo => (todo.id === todoToHandle.id ? {...todo, isChecked: !todo.isChecked} : todo)));
+    setTodos(
+      todos.map(todo => {
+        return todo.id === todoToHandle.id ? {...todo, isChecked: !todo.isChecked} : todo;
+      })
+    );
   }
 
   return (
@@ -20,7 +24,7 @@ export default function DailyTasks() {
         </p>
       </header>
       <Wrapper>
-        <TaskList todos={todos} onTodos={handleTodos} />
+        <TaskList todos={todos} onTodoChange={handleTodos} />
       </Wrapper>
     </>
   );
