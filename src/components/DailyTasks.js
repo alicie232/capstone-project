@@ -6,8 +6,13 @@ import dailyTasks from '../db';
 
 export default function DailyTasks() {
   const [todos, setTodos] = useState(() => {
-    const value = loadFromLocalStorage('todos');
-    return value ?? dailyTasks;
+    const todosFromLocal = loadFromLocalStorage('todos');
+    const uncheckedTodos = todosFromLocal
+      ? todosFromLocal.map(todo =>
+          todo.checkedAt !== new Date().toLocaleDateString() ? {...todo, isChecked: false, checkedAt: ''} : todo
+        )
+      : null;
+    return uncheckedTodos ?? dailyTasks;
   });
 
   useEffect(() => {
@@ -15,7 +20,13 @@ export default function DailyTasks() {
   }, [todos]);
 
   function handleTodos(todoToHandleId) {
-    setTodos(todos.map(todo => (todo.id === todoToHandleId ? {...todo, isChecked: !todo.isChecked} : todo)));
+    setTodos(
+      todos.map(todo =>
+        todo.id === todoToHandleId
+          ? {...todo, isChecked: !todo.isChecked, checkedAt: !todo.isChecked ? new Date().toLocaleDateString() : ''}
+          : todo
+      )
+    );
   }
 
   return (
