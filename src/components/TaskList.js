@@ -1,12 +1,26 @@
+import styled from 'styled-components';
+
 export default function TaskList({todos, onTodoChange}) {
   return (
     <ul>
       {todos.map(({id, isChecked, task}) => (
-        <li key={id} style={{listStyle: 'none'}}>
-          <input type="checkbox" checked={isChecked} onChange={() => onTodoChange(id)} />
-          <span style={{textDecoration: isChecked && 'line-through'}}>{task}</span>
-        </li>
+        <ListItem key={id}>
+          <label>
+            <input type="checkbox" checked={isChecked} onChange={() => onTodoChange(id)} />
+            <Task checked={isChecked}>{task}</Task>
+          </label>
+        </ListItem>
       ))}
     </ul>
   );
 }
+
+const ListItem = styled.li`
+  list-style: none;
+`;
+
+const Task = styled.span`
+  text-decoration: ${({checked}) => {
+    return checked && 'line-through';
+  }};
+`;
