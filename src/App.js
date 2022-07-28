@@ -3,9 +3,14 @@ import DailyTasks from './components/DailyTasks';
 
 export default function App() {
   return (
-    <Wrapper>
-      <DailyTasks />
-    </Wrapper>
+    <>
+      <StyledHeader>
+        <h1>Aktuelle Aufgaben</h1>
+      </StyledHeader>
+      <Wrapper>
+        <DailyTasks />
+      </Wrapper>
+    </>
   );
 }
 
@@ -14,4 +19,8 @@ const Wrapper = styled.div`
   max-width: 375px;
   padding: 10px;
   margin: auto;
+`;
+
+const StyledHeader = styled.header`
+  text-align: center;
 `;
