@@ -7,11 +7,9 @@ import dailyTasks from '../db';
 export default function DailyTasks() {
   const [todos, setTodos] = useState(() => {
     const todosFromLocal = loadFromLocalStorage('todos');
-    const uncheckedTodos = todosFromLocal
-      ? todosFromLocal.map(todo =>
-          todo.checkedAt !== new Date().toLocaleDateString() ? {...todo, isChecked: false, checkedAt: ''} : todo
-        )
-      : null;
+    const uncheckedTodos = todosFromLocal?.map(todo =>
+      todo.checkedAt !== new Date().toLocaleDateString() ? {...todo, isChecked: false, checkedAt: ''} : todo
+    );
     return uncheckedTodos ?? dailyTasks;
   });
 
