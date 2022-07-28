@@ -8,11 +8,13 @@ const dailyTasks = [
 ];
 
 describe('TaskList', () => {
-  it('renders tasks', () => {
+  it('renders tasks and checkboxes', () => {
     render(<TaskList todos={dailyTasks} />);
 
     const task = screen.getByText(/Räume/i, /Betten/i);
+    const checkbox = screen.getAllByRole('checkbox');
 
     expect(task).toBeInTheDocument();
+    expect(checkbox).toBeTruthy();
   });
 });
