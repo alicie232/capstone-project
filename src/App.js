@@ -1,17 +1,5 @@
-import styled from 'styled-components';
-import DailyTasks from './components/DailyTasks';
+import HomePage from './pages/HomePage';
 
 export default function App() {
-  return (
-    <Wrapper>
-      <DailyTasks />
-    </Wrapper>
-  );
+  return <HomePage />;
 }
-
-const Wrapper = styled.div`
-  border: solid;
-  max-width: 375px;
-  padding: 10px;
-  margin: auto;
-`;
