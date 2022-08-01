@@ -5,8 +5,16 @@ import {loadFromLocalStorage, writeToLocalStorage} from '../util/localstorage';
 
 export default function DailyTasks() {
   const [todos, setTodos] = useState(() => {
-    const value = loadFromLocalStorage('todos');
-    return value ?? dailyTodos;
+    const todosFromLocal = loadFromLocalStorage('todos');
+    const uncheckedTodos = todosFromLocal?.map(todo => {
+      return {
+        ...todo,
+        tasks: todo.tasks.map(task =>
+          task.checkedAt !== new Date().toLocaleDateString() ? {...task, isChecked: false, checkedAt: ''} : task
+        ),
+      };
+    });
+    return uncheckedTodos ?? dailyTodos;
   });
 
   useEffect(() => {
@@ -27,6 +35,7 @@ export default function DailyTasks() {
                 ? {
                     ...task,
                     isChecked: !task.isChecked,
+                    checkedAt: !task.isChecked ? new Date().toLocaleDateString() : '',
                   }
                 : task
             ),
