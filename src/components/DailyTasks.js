@@ -1,48 +1,76 @@
-import {useEffect, useState} from 'react';
-import {loadFromLocalStorage, writeToLocalStorage} from '../util/localstorage';
+import {useState} from 'react';
+import {dailyTodos} from '../db';
 import styled from 'styled-components';
-import TaskList from './TaskList';
-import dailyTasks from '../db';
 
 export default function DailyTasks() {
-  const [todos, setTodos] = useState(() => {
-    const todosFromLocal = loadFromLocalStorage('todos');
-    const uncheckedTodos = todosFromLocal?.map(todo =>
-      todo.checkedAt !== new Date().toLocaleDateString() ? {...todo, isChecked: false, checkedAt: ''} : todo
-    );
-    return uncheckedTodos ?? dailyTasks;
-  });
+  const [todos, setTodos] = useState(dailyTodos);
 
-  useEffect(() => {
-    writeToLocalStorage('todos', todos);
-  }, [todos]);
+  function handleChange(event) {
+    const todoId = event.target.dataset.todoid;
+    const taskId = event.target.dataset.taskid;
 
-  function handleTodos(todoToHandleId) {
-    setTodos(
-      todos.map(todo =>
-        todo.id === todoToHandleId
-          ? {...todo, isChecked: !todo.isChecked, checkedAt: !todo.isChecked ? new Date().toLocaleDateString() : ''}
-          : todo
-      )
-    );
+    setTodos(todos => {
+      return todos.map(todo => {
+        if (todo.id === todoId) {
+          return {
+            ...todo,
+            tasks: todo.tasks.map(task =>
+              task.id === taskId
+                ? {
+                    ...task,
+                    isChecked: !task.isChecked,
+                  }
+                : task
+            ),
+          };
+        }
+        return todo;
+      });
+    });
   }
 
   return (
     <>
-      <header>
-        <h1>täglich</h1>
-        <p>
-          Deine tägliche Aufgaben. <br />
-          Schnell und mit wenigen Handgriffen erledigt.
-        </p>
-      </header>
-      <Wrapper>
-        <TaskList todos={todos} onTodoChange={handleTodos} />
-      </Wrapper>
+      {todos.map(todo => {
+        return (
+          <div key={todo.id}>
+            <h1>{todo.category}</h1>
+            <p>{todo.description}</p>
+            <ul>
+              {todo.tasks.map(task => {
+                return (
+                  <ListItem key={task.id}>
+                    <label>
+                      <Checkbox
+                        type="checkbox"
+                        checked={task.isChecked}
+                        data-todoid={todo.id}
+                        data-taskid={task.id}
+                        onChange={handleChange}
+                      />
+                      <Task checked={task.isChecked}>{task.task}</Task>
+                    </label>
+                  </ListItem>
+                );
+              })}
+            </ul>
+          </div>
+        );
+      })}
     </>
   );
 }
 
-const Wrapper = styled.div`
-  border: 1px solid;
+const ListItem = styled.li`
+  list-style: none;
+`;
+
+const Task = styled.span`
+  text-decoration: ${({checked}) => {
+    return checked && 'line-through';
+  }};
+`;
+
+const Checkbox = styled.input`
+  accent-color: #9b59b6;
 `;
