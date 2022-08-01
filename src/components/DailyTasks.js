@@ -1,7 +1,8 @@
 import {useState, useEffect} from 'react';
 import {dailyTodos} from '../db';
-import styled from 'styled-components';
+
 import {loadFromLocalStorage, writeToLocalStorage} from '../util/localstorage';
+import TaskList from './TaskList';
 
 export default function DailyTasks() {
   const [todos, setTodos] = useState(() => {
@@ -21,7 +22,7 @@ export default function DailyTasks() {
     writeToLocalStorage('todos', todos);
   }, [todos]);
 
-  function handleChange(event) {
+  function handleTodos(event) {
     const todoId = event.target.dataset.todoid;
     const taskId = event.target.dataset.taskid;
 
@@ -48,46 +49,7 @@ export default function DailyTasks() {
 
   return (
     <>
-      {todos.map(todo => {
-        return (
-          <div key={todo.id}>
-            <h1>{todo.category}</h1>
-            <p>{todo.description}</p>
-            <ul>
-              {todo.tasks.map(task => {
-                return (
-                  <ListItem key={task.id}>
-                    <label>
-                      <Checkbox
-                        type="checkbox"
-                        checked={task.isChecked}
-                        data-todoid={todo.id}
-                        data-taskid={task.id}
-                        onChange={handleChange}
-                      />
-                      <Task checked={task.isChecked}>{task.task}</Task>
-                    </label>
-                  </ListItem>
-                );
-              })}
-            </ul>
-          </div>
-        );
-      })}
+      <TaskList todos={todos} onTodoChange={handleTodos} />
     </>
   );
 }
-
-const ListItem = styled.li`
-  list-style: none;
-`;
-
-const Task = styled.span`
-  text-decoration: ${({checked}) => {
-    return checked && 'line-through';
-  }};
-`;
-
-const Checkbox = styled.input`
-  accent-color: #9b59b6;
-`;
