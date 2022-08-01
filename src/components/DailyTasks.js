@@ -1,9 +1,17 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import {dailyTodos} from '../db';
 import styled from 'styled-components';
+import {loadFromLocalStorage, writeToLocalStorage} from '../util/localstorage';
 
 export default function DailyTasks() {
-  const [todos, setTodos] = useState(dailyTodos);
+  const [todos, setTodos] = useState(() => {
+    const value = loadFromLocalStorage('todos');
+    return value ?? dailyTodos;
+  });
+
+  useEffect(() => {
+    writeToLocalStorage('todos', todos);
+  }, [todos]);
 
   function handleChange(event) {
     const todoId = event.target.dataset.todoid;
