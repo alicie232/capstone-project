@@ -351,7 +351,7 @@ export const dailyTodos = [
   },
   {
     id: nanoid(),
-    category: 'Samstags & sonntags',
+    category: 'samstags & sonntags',
     description: 'Lehn dich zurück und genieß dein Wochenende!',
     image: '../assets/images/funnydog.png',
   },
