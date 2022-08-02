@@ -6,24 +6,29 @@ export default function TaskList({todos, onTodoChange}) {
       <Wrapper key={todo.id}>
         <h1>{todo.category}</h1>
         <p>{todo.description}</p>
-        <StyledList>
-          {todo.tasks.map(task => {
-            return (
-              <ListItem key={task.id}>
-                <label>
-                  <Checkbox
-                    type="checkbox"
-                    checked={task.isChecked}
-                    data-todoid={todo.id}
-                    data-taskid={task.id}
-                    onChange={onTodoChange}
-                  />
-                  <Task checked={task.isChecked}>{task.task}</Task>
-                </label>
-              </ListItem>
-            );
-          })}
-        </StyledList>
+
+        {todo.tasks === undefined ? (
+          <img src={todo.image} alt="funny dog" />
+        ) : (
+          <StyledList>
+            {todo.tasks.map(task => {
+              return (
+                <ListItem key={task.id}>
+                  <label>
+                    <Checkbox
+                      type="checkbox"
+                      checked={task.isChecked}
+                      data-todoid={todo.id}
+                      data-taskid={task.id}
+                      onChange={onTodoChange}
+                    />
+                    <Task checked={task.isChecked}>{task.task}</Task>
+                  </label>
+                </ListItem>
+              );
+            })}
+          </StyledList>
+        )}
       </Wrapper>
     );
   });

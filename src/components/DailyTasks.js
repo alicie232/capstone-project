@@ -8,12 +8,15 @@ export default function DailyTasks() {
   const [todos, setTodos] = useState(() => {
     const todosFromLocal = loadFromLocalStorage('todos');
     const uncheckedTodos = todosFromLocal?.map(todo => {
-      return {
-        ...todo,
-        tasks: todo.tasks.map(task =>
-          task.checkedAt !== new Date().toLocaleDateString() ? {...task, isChecked: false, checkedAt: ''} : task
-        ),
-      };
+      if (todo.tasks !== undefined) {
+        return {
+          ...todo,
+          tasks: todo.tasks.map(task =>
+            task.checkedAt !== new Date().toLocaleDateString() ? {...task, isChecked: false, checkedAt: ''} : task
+          ),
+        };
+      }
+      return todo;
     });
     return uncheckedTodos ?? dailyTodos;
   });
@@ -28,7 +31,7 @@ export default function DailyTasks() {
 
     setTodos(todos => {
       return todos.map(todo => {
-        if (todo.id === todoId) {
+        if (todo.id === todoId && todo.tasks !== undefined) {
           return {
             ...todo,
             tasks: todo.tasks.map(task =>

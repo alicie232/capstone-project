@@ -353,13 +353,6 @@ export const dailyTodos = [
     id: nanoid(),
     category: 'Samstags & sonntags',
     description: 'Lehn dich zurück und genieß dein Wochenende!',
-    tasks: [
-      {
-        id: nanoid(),
-        task: 'FunnyDog Pic (img comes later..) ',
-        checkedAt: '',
-        isChecked: false,
-      },
-    ],
+    image: '../assets/images/funnydog.png',
   },
 ];
