@@ -364,7 +364,7 @@ export const dailyTodos = [
   },
   {
     id: nanoid(),
-    category: 'samstags',
+    category: 'sonntags',
     weekday: 0,
     description: 'Lehn dich zurück und genieß dein Wochenende!',
     image: '../assets/images/funnydog.png',
