@@ -77,7 +77,7 @@ export const dailyTodos = [
   },
   {
     id: nanoid(),
-    category: 'montags',
+    category: 'Montag',
     weekday: 1,
     description: 'Heute setzen wir den Fokus auf das Bad.',
     tasks: [
@@ -145,7 +145,7 @@ export const dailyTodos = [
   },
   {
     id: nanoid(),
-    category: 'dienstags',
+    category: 'Dienstag',
     weekday: 2,
     description: 'Heute sagen wir dem Staub den Kampf an. Schnapp dir den Staubsauger und los!',
     tasks: [
@@ -195,7 +195,7 @@ export const dailyTodos = [
   },
   {
     id: nanoid(),
-    category: 'mittwochs',
+    category: 'Mittwoch',
     weekday: 3,
     description: 'Mit Putzeimer und Lappen ausgestattet wischen wir heute feucht über die Oberflächen.',
     tasks: [
@@ -251,7 +251,7 @@ export const dailyTodos = [
   },
   {
     id: nanoid(),
-    category: 'donnerstags',
+    category: 'Donnerstag',
     weekday: 4,
     description: 'Fast geschafft! Heute sorgen wir für einen glasklaren Blick und duftende Bettwäsche.',
     tasks: [
@@ -289,7 +289,7 @@ export const dailyTodos = [
   },
   {
     id: nanoid(),
-    category: 'freitags',
+    category: 'Freitag',
     weekday: 5,
     description: 'Hunger? Mit Fokus auf die Küche erstellen wir heute den Menüplan für nächste Woche.',
     tasks: [
@@ -357,14 +357,14 @@ export const dailyTodos = [
   },
   {
     id: nanoid(),
-    category: 'samstags',
+    category: 'Samstag',
     weekday: 6,
     description: 'Lehn dich zurück und genieß dein Wochenende!',
     image: '../assets/images/funnydog.png',
   },
   {
     id: nanoid(),
-    category: 'sonntags',
+    category: 'Sonntag',
     weekday: 0,
     description: 'Lehn dich zurück und genieß dein Wochenende!',
     image: '../assets/images/funnydog.png',
