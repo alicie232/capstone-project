@@ -15,9 +15,7 @@ export default function HomePage() {
 }
 
 const Wrapper = styled.div`
-  border: solid;
   max-width: 375px;
-  padding: 10px;
   margin: auto;
 `;
 
