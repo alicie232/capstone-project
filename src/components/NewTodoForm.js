@@ -1,6 +1,7 @@
 import {nanoid} from 'nanoid';
 import {useState} from 'react';
 import styled from 'styled-components';
+import {dailyTodos} from '../db';
 import {loadFromLocalStorage, writeToLocalStorage} from '../util/localstorage';
 
 export default function NewTodoForm({insertNewTodo}) {
@@ -10,7 +11,8 @@ export default function NewTodoForm({insertNewTodo}) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    const currentTemplates = loadFromLocalStorage('TaskTemplates');
+    const currentTemplates =
+      loadFromLocalStorage('TaskTemplates') !== null ? loadFromLocalStorage('TaskTemplates') : dailyTodos;
 
     const newTask = {id: nanoid(), task, checkedAt: '', isChecked: false};
 
@@ -27,55 +29,52 @@ export default function NewTodoForm({insertNewTodo}) {
     );
 
     insertNewTodo(category, newTask);
+    setTask('');
   }
 
   return (
-    <Wrapper>
-      <StyledForm onSubmit={handleSubmit}>
-        <label htmlFor="task">
-          Aufgaben:
-          <input
-            id="task"
-            type="text"
-            value={task}
-            onChange={e => {
-              setTask(e.target.value);
-            }}
-            placeholder="Aufgabe"
-          />
-        </label>
-
-        <label htmlFor="category">Kategorie:</label>
-        <StyledSelect
-          id="category"
-          name="category"
-          value={category}
+    <StyledForm onSubmit={handleSubmit}>
+      <label htmlFor="task">
+        Aufgabe:
+        <input
+          id="task"
+          type="text"
+          value={task}
           onChange={e => {
-            setCategory(e.target.value);
+            setTask(e.target.value);
           }}
-        >
-          <option value="42">täglich</option>
-          <option value="1">Montag</option>
-          <option value="2">Dienstag</option>
-          <option value="3">Mittwoch</option>
-          <option value="4">Donnerstag</option>
-          <option value="5">Freitag</option>
-          <option value="6">Samstag</option>
-          <option value="0">Sonntag</option>
-        </StyledSelect>
+          placeholder="Aufgabe"
+          required
+        />
+      </label>
 
-        <StyledButton type="submit">abschicken</StyledButton>
-      </StyledForm>
-    </Wrapper>
+      <label htmlFor="category">Kategorie:</label>
+      <StyledSelect
+        id="category"
+        name="category"
+        value={category}
+        onChange={e => {
+          setCategory(Number(e.target.value));
+        }}
+      >
+        <option value="42">täglich</option>
+        <option value="1">Montag</option>
+        <option value="2">Dienstag</option>
+        <option value="3">Mittwoch</option>
+        <option value="4">Donnerstag</option>
+        <option value="5">Freitag</option>
+        <option value="6">Samstag</option>
+        <option value="0">Sonntag</option>
+      </StyledSelect>
+
+      <StyledButton type="submit">abschicken</StyledButton>
+    </StyledForm>
   );
 }
 
-const Wrapper = styled.div`
+const StyledForm = styled.form`
   max-width: 375px;
   margin: auto;
-`;
-
-const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   padding: 50px;

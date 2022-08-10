@@ -10,7 +10,7 @@ const todosFromLocal = loadFromLocalStorage(new Date().toLocaleDateString());
 
 export default function App() {
   const [taskTemplates] = useState(() => {
-    return templatesFromLocal || dailyTodos;
+    return templatesFromLocal ?? dailyTodos;
   });
 
   const [todos, setTodos] = useState(() => {
@@ -23,13 +23,13 @@ export default function App() {
     }
   });
 
-  function insertNewTodo(category, tempTask) {
+  function insertNewTodo(category, newTodo) {
     setTodos(todos => {
       return todos.map(todo => {
-        if (todo.weekday == category) {
+        if (todo.weekday === category) {
           return {
             ...todo,
-            tasks: [...todo.tasks, tempTask],
+            tasks: [...todo.tasks, newTodo],
           };
         }
         return todo;

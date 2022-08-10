@@ -4,14 +4,14 @@ export default function TaskList({todos, onTodoChange}) {
   return todos.map(todo => {
     return (
       <Wrapper key={todo.id}>
-        <StyledTitle>{todo.category}</StyledTitle>
+        <StyledTitle>{todo.title}</StyledTitle>
 
         <p>{todo.description}</p>
 
         {todo.tasks.length === 0 ? (
           <Image src={todo.image} alt="funny dog" />
         ) : (
-          <StyledList>
+          <StyledList role="list">
             {todo.tasks.map(task => {
               return (
                 <ListItem key={task.id}>
@@ -35,7 +35,7 @@ export default function TaskList({todos, onTodoChange}) {
   });
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled.article`
   border: solid;
   border-radius: 15px;
   margin: 5px;

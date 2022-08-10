@@ -8,9 +8,5 @@ export default function DailyTasks({todos, updateTodo}) {
     updateTodo(todoId, taskId);
   }
 
-  return (
-    <>
-      <TaskList todos={todos} onTodoChange={handleTodos} />
-    </>
-  );
+  return <TaskList todos={todos} onTodoChange={handleTodos} />;
 }
