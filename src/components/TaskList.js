@@ -4,11 +4,12 @@ export default function TaskList({todos, onTodoChange}) {
   return todos.map(todo => {
     return (
       <Wrapper key={todo.id}>
-        <h1>{todo.category}</h1>
+        <StyledTitle>{todo.category}</StyledTitle>
+
         <p>{todo.description}</p>
 
-        {todo.tasks === undefined ? (
-          <img src={todo.image} alt="funny dog" />
+        {todo.tasks.length === 0 ? (
+          <Image src={todo.image} alt="funny dog" />
         ) : (
           <StyledList>
             {todo.tasks.map(task => {
@@ -41,6 +42,19 @@ const Wrapper = styled.div`
   padding: 5px;
 `;
 
+const StyledTitle = styled.h3`
+  text-align: center;
+  font-size: 1.5rem;
+`;
+
+const Image = styled.img`
+  display: block;
+  margin: auto;
+  margin-bottom: 10px;
+  border: 1px solid #063970;
+  width: 50%;
+`;
+
 const StyledList = styled.ul`
   padding: 0 0 0 15px;
 `;
@@ -50,7 +64,7 @@ const ListItem = styled.li`
 `;
 
 const Checkbox = styled.input`
-  accent-color: #9b59b6;
+  accent-color: var(--color-highlight);
 `;
 
 const Task = styled.span`

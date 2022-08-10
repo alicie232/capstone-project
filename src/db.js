@@ -4,7 +4,7 @@ export const dailyTodos = [
   {
     id: nanoid(),
     category: 'täglich',
-    weekday: 'all',
+    weekday: 42,
     description: 'Deine tägliche Aufgaben. Schnell und mit wenigen Handgriffen erledigt.',
     tasks: [
       {
@@ -361,6 +361,7 @@ export const dailyTodos = [
     weekday: 6,
     description: 'Lehn dich zurück und genieß dein Wochenende!',
     image: '../assets/images/funnydog.png',
+    tasks: [],
   },
   {
     id: nanoid(),
@@ -368,5 +369,6 @@ export const dailyTodos = [
     weekday: 0,
     description: 'Lehn dich zurück und genieß dein Wochenende!',
     image: '../assets/images/funnydog.png',
+    tasks: [],
   },
 ];
