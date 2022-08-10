@@ -4,13 +4,14 @@ export default function TaskList({todos, onTodoChange}) {
   return todos.map(todo => {
     return (
       <Wrapper key={todo.id}>
-        <h1>{todo.category}</h1>
+        <StyledTitle>{todo.title}</StyledTitle>
+
         <p>{todo.description}</p>
 
-        {todo.tasks === undefined ? (
-          <img src={todo.image} alt="funny dog" />
+        {todo.tasks.length === 0 ? (
+          <Image src={todo.image} alt="funny dog" />
         ) : (
-          <StyledList>
+          <StyledList role="list">
             {todo.tasks.map(task => {
               return (
                 <ListItem key={task.id}>
@@ -34,11 +35,24 @@ export default function TaskList({todos, onTodoChange}) {
   });
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled.article`
   border: solid;
   border-radius: 15px;
   margin: 5px;
   padding: 5px;
+`;
+
+const StyledTitle = styled.h3`
+  text-align: center;
+  font-size: 1.5rem;
+`;
+
+const Image = styled.img`
+  display: block;
+  margin: auto;
+  margin-bottom: 10px;
+  border: 1px solid #063970;
+  width: 50%;
 `;
 
 const StyledList = styled.ul`
@@ -50,7 +64,7 @@ const ListItem = styled.li`
 `;
 
 const Checkbox = styled.input`
-  accent-color: #9b59b6;
+  accent-color: var(--color-highlight);
 `;
 
 const Task = styled.span`

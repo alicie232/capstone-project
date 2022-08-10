@@ -1,60 +1,12 @@
-import {useState, useEffect} from 'react';
-import {dailyTodos} from '../db';
-import {loadFromLocalStorage, writeToLocalStorage} from '../util/localstorage';
 import TaskList from './TaskList';
 
-export default function DailyTasks() {
-  const [todos, setTodos] = useState(() => {
-    const todosFromLocal = loadFromLocalStorage('todos');
-    const uncheckedTodos = todosFromLocal?.map(todo => {
-      if (todo.tasks !== undefined) {
-        return {
-          ...todo,
-          tasks: todo.tasks.map(task =>
-            task.checkedAt !== new Date().toLocaleDateString() ? {...task, isChecked: false, checkedAt: ''} : task
-          ),
-        };
-      }
-      return todo;
-    });
-
-    const todaysTodos = dailyTodos.filter(todo => todo.weekday === new Date().getDay() || todo.weekday === 'all');
-
-    return uncheckedTodos ?? todaysTodos;
-  });
-
-  useEffect(() => {
-    writeToLocalStorage('todos', todos);
-  }, [todos]);
-
+export default function DailyTasks({todos, updateTodo}) {
   function handleTodos(event) {
     const todoId = event.target.dataset.todoid;
     const taskId = event.target.dataset.taskid;
 
-    setTodos(todos => {
-      return todos.map(todo => {
-        if (todo.id === todoId && todo.tasks !== undefined) {
-          return {
-            ...todo,
-            tasks: todo.tasks.map(task =>
-              task.id === taskId
-                ? {
-                    ...task,
-                    isChecked: !task.isChecked,
-                    checkedAt: !task.isChecked ? new Date().toLocaleDateString() : '',
-                  }
-                : task
-            ),
-          };
-        }
-        return todo;
-      });
-    });
+    updateTodo(todoId, taskId);
   }
 
-  return (
-    <>
-      <TaskList todos={todos} onTodoChange={handleTodos} />
-    </>
-  );
+  return <TaskList todos={todos} onTodoChange={handleTodos} />;
 }
