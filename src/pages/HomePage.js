@@ -1,14 +1,20 @@
 import styled from 'styled-components';
 import DailyTasks from '../components/DailyTasks';
 
-export default function HomePage({todos, insertNewTodo, updateTodo, taskTemplates}) {
+export default function HomePage({todos, insertNewTodo, updateTodo, taskTemplates, deleteTodo}) {
   return (
     <>
       <StyledHeader>
         <h2>Aktuelle Aufgaben</h2>
       </StyledHeader>
       <Wrapper>
-        <DailyTasks todos={todos} insertNewTodo={insertNewTodo} updateTodo={updateTodo} taskTemplates={taskTemplates} />
+        <DailyTasks
+          todos={todos}
+          insertNewTodo={insertNewTodo}
+          updateTodo={updateTodo}
+          taskTemplates={taskTemplates}
+          deleteTodo={deleteTodo}
+        />
       </Wrapper>
     </>
   );

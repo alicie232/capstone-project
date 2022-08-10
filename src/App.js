@@ -59,6 +59,17 @@ export default function App() {
     });
   }
 
+  function handleDeleteTodo(id) {
+    setTodos(todos => {
+      return todos.map(todo => {
+        return {
+          ...todo,
+          tasks: todo.tasks.filter(task => task.id !== id),
+        };
+      });
+    });
+  }
+
   useEffect(() => {
     writeToLocalStorage('TaskTemplates', taskTemplates);
   }, [taskTemplates]);
@@ -73,7 +84,13 @@ export default function App() {
         <h1>Tidy up your life</h1>
       </StyledHeader>
       <NewTodoForm insertNewTodo={insertNewTodo} />
-      <HomePage todos={todos} insertNewTodo={insertNewTodo} updateTodo={updateTodo} taskTemplates={taskTemplates} />
+      <HomePage
+        todos={todos}
+        insertNewTodo={insertNewTodo}
+        updateTodo={updateTodo}
+        taskTemplates={taskTemplates}
+        deleteTodo={handleDeleteTodo}
+      />
     </>
   );
 }

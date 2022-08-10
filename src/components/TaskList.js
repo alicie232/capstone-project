@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export default function TaskList({todos, onTodoChange}) {
+export default function TaskList({todos, onTodoChange, deleteTodo}) {
   return todos.map(todo => {
     return (
       <Wrapper key={todo.id}>
@@ -25,6 +25,15 @@ export default function TaskList({todos, onTodoChange}) {
                     />
                     <Task checked={task.isChecked}>{task.task}</Task>
                   </label>
+                  <button
+                    type="button"
+                    onClick={event => {
+                      event.stopPropagation();
+                      deleteTodo(task.id);
+                    }}
+                  >
+                    X
+                  </button>
                 </ListItem>
               );
             })}
