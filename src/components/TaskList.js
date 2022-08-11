@@ -5,9 +5,7 @@ export default function TaskList({todos, onTodoChange, deleteTodo}) {
     return (
       <Wrapper key={todo.id}>
         <StyledTitle>{todo.title}</StyledTitle>
-
         <Description>{todo.description}</Description>
-
         {todo.tasks.length === 0 ? (
           <Image src={todo.image} alt="funny dog" />
         ) : (
@@ -81,7 +79,6 @@ const ListItem = styled.li`
   justify-content: space-between;
   font-size: 1.3rem;
   padding: 10px 0 10px 0;
-  cursor: move;
 `;
 
 const StyledLabel = styled.label`
@@ -97,7 +94,6 @@ const Checkbox = styled.input`
 const Task = styled.span`
   padding-left: 15px;
   padding-right: 5px;
-
   text-decoration: ${({checked}) => {
     return checked && 'line-through';
   }};
