@@ -6,7 +6,7 @@ export const dailyTodos = [
     title: 'täglich',
     weekday: 42,
     description: 'Deine tägliche Aufgaben. Schnell und mit wenigen Handgriffen erledigt.',
-    image: '../assets/images/funnydog.png',
+    image: '../assets/images/lazydog.png',
     tasks: [
       {
         id: nanoid(),
@@ -81,7 +81,7 @@ export const dailyTodos = [
     title: 'Montag',
     weekday: 1,
     description: 'Heute setzen wir den Fokus auf das Bad.',
-    image: '../assets/images/funnydog.png',
+    image: '../assets/images/lazydog.png',
     tasks: [
       {
         id: nanoid(),
@@ -150,7 +150,7 @@ export const dailyTodos = [
     title: 'Dienstag',
     weekday: 2,
     description: 'Heute sagen wir dem Staub den Kampf an. Schnapp dir den Staubsauger und los!',
-    image: '../assets/images/funnydog.png',
+    image: '../assets/images/lazydog.png',
     tasks: [
       {
         id: nanoid(),
@@ -201,7 +201,7 @@ export const dailyTodos = [
     title: 'Mittwoch',
     weekday: 3,
     description: 'Mit Putzeimer und Lappen ausgestattet wischen wir heute feucht über die Oberflächen.',
-    image: '../assets/images/funnydog.png',
+    image: '../assets/images/lazydog.png',
     tasks: [
       {
         id: nanoid(),
@@ -257,7 +257,7 @@ export const dailyTodos = [
     id: nanoid(),
     title: 'Donnerstag',
     weekday: 4,
-    image: '../assets/images/funnydog.png',
+    image: '../assets/images/lazydog.png',
     description: 'Fast geschafft! Heute sorgen wir für einen glasklaren Blick und duftende Bettwäsche.',
     tasks: [
       {
@@ -297,7 +297,7 @@ export const dailyTodos = [
     title: 'Freitag',
     weekday: 5,
     description: 'Hunger? Mit Fokus auf die Küche erstellen wir heute den Menüplan für nächste Woche.',
-    image: '../assets/images/funnydog.png',
+    image: '../assets/images/lazydog.png',
     tasks: [
       {
         id: nanoid(),

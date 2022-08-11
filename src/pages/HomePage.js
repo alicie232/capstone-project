@@ -4,9 +4,7 @@ import DailyTasks from '../components/DailyTasks';
 export default function HomePage({todos, insertNewTodo, updateTodo, taskTemplates, deleteTodo}) {
   return (
     <>
-      <StyledHeader>
-        <h2>Aktuelle Aufgaben</h2>
-      </StyledHeader>
+      <StyledHeader>Aktuelle Aufgaben</StyledHeader>
       <Wrapper>
         <DailyTasks
           todos={todos}
@@ -26,9 +24,7 @@ const Wrapper = styled.div`
 `;
 
 const StyledHeader = styled.header`
+  font-size: 2rem;
   text-align: center;
-  border: 2px;
-  border-style: double dashed;
-  max-width: 360px;
-  margin: auto;
+  padding: 20px;
 `;

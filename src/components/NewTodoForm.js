@@ -34,6 +34,7 @@ export default function NewTodoForm({insertNewTodo}) {
 
   return (
     <StyledForm onSubmit={handleSubmit}>
+      <StyledHeader>Aufgabe hinzufügen</StyledHeader>
       <label htmlFor="task">
         Aufgabe:
         <input
@@ -44,6 +45,7 @@ export default function NewTodoForm({insertNewTodo}) {
             setTask(e.target.value);
           }}
           placeholder="Aufgabe"
+          autoComplete="off"
           required
         />
       </label>
@@ -75,13 +77,21 @@ export default function NewTodoForm({insertNewTodo}) {
 const StyledForm = styled.form`
   max-width: 375px;
   margin: auto;
+  padding: 20px;
   display: flex;
   flex-direction: column;
-  padding: 50px;
+  gap: 5px;
+  border: solid;
+  border-radius: 15px;
+`;
+
+const StyledHeader = styled.header`
+  padding-bottom: 10px;
 `;
 
 const StyledSelect = styled.select`
   width: 100px;
+  font-size: 16px;
 `;
 
 const StyledButton = styled.button`
