@@ -80,9 +80,7 @@ export default function App() {
 
   return (
     <>
-      <StyledHeader>
-        <h1 id="top">Tidy up your life</h1>
-      </StyledHeader>
+      <StyledHeader>Tidy up your life</StyledHeader>
       <NewTodoForm insertNewTodo={insertNewTodo} />
       <HomePage
         todos={todos}
@@ -98,4 +96,5 @@ export default function App() {
 const StyledHeader = styled.header`
   margin: 30px;
   text-align: center;
+  font-size: 2rem;
 `;
