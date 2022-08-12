@@ -1,34 +1,46 @@
 import styled from 'styled-components';
 
-export default function TaskList({todos, onTodoChange}) {
+export default function TaskList({todos, onTodoChange, deleteTodo}) {
   return todos.map(todo => {
     return (
       <Wrapper key={todo.id}>
         <StyledTitle>{todo.title}</StyledTitle>
-
-        <p>{todo.description}</p>
-
+        <Description>{todo.description}</Description>
         {todo.tasks.length === 0 ? (
           <Image src={todo.image} alt="funny dog" />
         ) : (
-          <StyledList role="list">
+          <ul>
             {todo.tasks.map(task => {
               return (
-                <ListItem key={task.id}>
-                  <label>
-                    <Checkbox
-                      type="checkbox"
-                      checked={task.isChecked}
-                      data-todoid={todo.id}
-                      data-taskid={task.id}
-                      onChange={onTodoChange}
-                    />
-                    <Task checked={task.isChecked}>{task.task}</Task>
-                  </label>
-                </ListItem>
+                <div key={task.id}>
+                  <ListItem>
+                    <StyledLabel>
+                      <Checkbox
+                        type="checkbox"
+                        checked={task.isChecked}
+                        data-todoid={todo.id}
+                        data-taskid={task.id}
+                        onChange={onTodoChange}
+                      />
+
+                      <Task checked={task.isChecked}>{task.task}</Task>
+                    </StyledLabel>
+
+                    <DeleteButton
+                      type="button"
+                      onClick={event => {
+                        event.stopPropagation();
+                        deleteTodo(task.id);
+                      }}
+                    >
+                      <img src="../assets/icons/button-delete.svg" alt="delete" />
+                    </DeleteButton>
+                  </ListItem>
+                  <hr />
+                </div>
               );
             })}
-          </StyledList>
+          </ul>
         )}
       </Wrapper>
     );
@@ -38,13 +50,19 @@ export default function TaskList({todos, onTodoChange}) {
 const Wrapper = styled.article`
   border: solid;
   border-radius: 15px;
+  box-shadow: 3px 4px 20px rgba(0, 0, 0, 0.2);
   margin: 5px;
-  padding: 5px;
+  padding: 20px;
+  margin-bottom: 50px;
 `;
 
 const StyledTitle = styled.h3`
-  text-align: center;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
+  padding: 10px;
+`;
+
+const Description = styled.p`
+  padding: 10px;
 `;
 
 const Image = styled.img`
@@ -55,20 +73,33 @@ const Image = styled.img`
   width: 50%;
 `;
 
-const StyledList = styled.ul`
-  padding: 0 0 0 15px;
+const ListItem = styled.li`
+  display: flex;
+  list-style: none;
+  justify-content: space-between;
+  font-size: 1.3rem;
+  padding: 10px 0 10px 0;
 `;
 
-const ListItem = styled.li`
-  list-style: none;
+const StyledLabel = styled.label`
+  display: flex;
+  align-items: center;
 `;
 
 const Checkbox = styled.input`
   accent-color: var(--color-highlight);
+  transform: scale(1.5);
 `;
 
 const Task = styled.span`
+  padding-left: 15px;
+  padding-right: 5px;
   text-decoration: ${({checked}) => {
     return checked && 'line-through';
   }};
+`;
+
+const DeleteButton = styled.button`
+  border: none;
+  background-color: transparent;
 `;

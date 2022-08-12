@@ -1,6 +1,10 @@
 export const loadFromLocalStorage = key => {
-  const value = localStorage.getItem(key);
-  return JSON.parse(value);
+  try {
+    const value = localStorage.getItem(key);
+    return JSON.parse(value);
+  } catch (error) {
+    return null;
+  }
 };
 
 export const writeToLocalStorage = (key, value) => {
