@@ -34,3 +34,4 @@ cypress/cucumber-json
 
 # IDE
 .idea
+/_data

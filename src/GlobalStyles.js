@@ -5,6 +5,9 @@ const styled = {createGlobalStyle};
 export default styled.createGlobalStyle`
   :root {
     --color-highlight: #333333;
+    --fontsize-small: 1rem;
+    --fontsize-medium: 1.3rem;
+    --fontsize-large: 1.8rem;
   }
 
   * {
@@ -15,7 +18,6 @@ export default styled.createGlobalStyle`
 
   body {
     margin: 0;
-    font-size: 1rem;
     font-family: 'Open Sans', sans-serif;
   }
 

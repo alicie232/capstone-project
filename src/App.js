@@ -9,10 +9,10 @@ const templatesFromLocal = loadFromLocalStorage('TaskTemplates');
 const todosFromLocal = loadFromLocalStorage(new Date().toLocaleDateString());
 
 export default function App() {
+  const [isOpen, setIsOpen] = useState(false);
   const [taskTemplates] = useState(() => {
     return templatesFromLocal ?? dailyTodos;
   });
-
   const [todos, setTodos] = useState(() => {
     const todaysTodos = taskTemplates.filter(todo => todo.weekday === new Date().getDay() || todo.weekday === 42);
 
@@ -35,6 +35,7 @@ export default function App() {
         return todo;
       });
     });
+    setIsOpen(false);
   }
 
   function updateTodo(todoId, taskId) {
@@ -70,6 +71,10 @@ export default function App() {
     });
   }
 
+  function handleCloseForm() {
+    setIsOpen(false);
+  }
+
   useEffect(() => {
     writeToLocalStorage('TaskTemplates', taskTemplates);
   }, [taskTemplates]);
@@ -80,8 +85,10 @@ export default function App() {
 
   return (
     <>
+      <button onClick={() => setIsOpen(true)}>Open Form</button>
+      <NewTodoForm open={isOpen} onClose={handleCloseForm} insertNewTodo={insertNewTodo} />
+
       <StyledHeader>Tidy up your life</StyledHeader>
-      <NewTodoForm insertNewTodo={insertNewTodo} />
       <HomePage
         todos={todos}
         insertNewTodo={insertNewTodo}
@@ -96,5 +103,5 @@ export default function App() {
 const StyledHeader = styled.header`
   margin: 30px;
   text-align: center;
-  font-size: 2rem;
+  font-size: var(--fontsize-large);
 `;

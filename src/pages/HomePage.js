@@ -24,7 +24,7 @@ const Wrapper = styled.div`
 `;
 
 const StyledHeader = styled.header`
-  font-size: 2rem;
+  font-size: var(--fontsize-large);
   text-align: center;
   padding: 20px;
 `;

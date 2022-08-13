@@ -4,9 +4,8 @@ import styled from 'styled-components';
 import {dailyTodos} from '../db';
 import {loadFromLocalStorage, writeToLocalStorage} from '../util/localstorage';
 
-export default function NewTodoForm({insertNewTodo}) {
+export default function NewTodoForm({insertNewTodo, open, onClose}) {
   const [task, setTask] = useState('');
-
   const [category, setCategory] = useState(42);
 
   function handleSubmit(event) {
@@ -31,48 +30,84 @@ export default function NewTodoForm({insertNewTodo}) {
     insertNewTodo(category, newTask);
     setTask('');
   }
-
+  if (!open) return null;
   return (
-    <StyledForm onSubmit={handleSubmit}>
-      <StyledHeader>Aufgabe hinzufügen</StyledHeader>
-      <label htmlFor="task">
-        Aufgabe:
-        <input
-          id="task"
-          type="text"
-          value={task}
-          onChange={e => {
-            setTask(e.target.value);
-          }}
-          placeholder="Aufgabe"
-          autoComplete="off"
-          required
-        />
-      </label>
+    <>
+      <Overlay />
+      <ModalStyles>
+        <StyledHeader>Aufgabe hinzufügen</StyledHeader>
 
-      <label htmlFor="category">Kategorie:</label>
-      <StyledSelect
-        id="category"
-        name="category"
-        value={category}
-        onChange={e => {
-          setCategory(Number(e.target.value));
-        }}
-      >
-        <option value="42">täglich</option>
-        <option value="1">Montag</option>
-        <option value="2">Dienstag</option>
-        <option value="3">Mittwoch</option>
-        <option value="4">Donnerstag</option>
-        <option value="5">Freitag</option>
-        <option value="6">Samstag</option>
-        <option value="0">Sonntag</option>
-      </StyledSelect>
+        <StyledForm onSubmit={handleSubmit}>
+          <StyledLabelInput htmlFor="task">
+            Aufgabe hinzufügen:
+            <TaskInput
+              id="task"
+              type="text"
+              value={task}
+              onChange={e => {
+                setTask(e.target.value);
+              }}
+              placeholder="Aufgabe"
+              autoComplete="off"
+              required
+            />
+          </StyledLabelInput>
 
-      <StyledButton type="submit">abschicken</StyledButton>
-    </StyledForm>
+          <StyledLabelSelect htmlFor="category">
+            Kategorie:
+            <StyledSelect
+              id="category"
+              name="category"
+              value={category}
+              onChange={e => {
+                setCategory(Number(e.target.value));
+              }}
+            >
+              <option value="42">täglich</option>
+              <option value="1">Montag</option>
+              <option value="2">Dienstag</option>
+              <option value="3">Mittwoch</option>
+              <option value="4">Donnerstag</option>
+              <option value="5">Freitag</option>
+              <option value="6">Samstag</option>
+              <option value="0">Sonntag</option>
+            </StyledSelect>
+          </StyledLabelSelect>
+
+          <StyledSubmitButton type="submit">senden</StyledSubmitButton>
+        </StyledForm>
+        <StyledCloseButton onClick={onClose}>zurück</StyledCloseButton>
+      </ModalStyles>
+    </>
   );
 }
+const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1;
+`;
+
+const ModalStyles = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 50px;
+  z-index: 1;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`;
+
+const StyledHeader = styled.header`
+  padding-bottom: 10px;
+`;
 
 const StyledForm = styled.form`
   max-width: 375px;
@@ -85,8 +120,18 @@ const StyledForm = styled.form`
   border-radius: 15px;
 `;
 
-const StyledHeader = styled.header`
-  padding-bottom: 10px;
+const StyledLabelInput = styled.label`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`;
+
+const TaskInput = styled.input``;
+
+const StyledLabelSelect = styled.label`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 `;
 
 const StyledSelect = styled.select`
@@ -94,6 +139,10 @@ const StyledSelect = styled.select`
   font-size: 16px;
 `;
 
-const StyledButton = styled.button`
+const StyledSubmitButton = styled.button`
+  width: 100px;
+`;
+
+const StyledCloseButton = styled.button`
   width: 100px;
 `;

@@ -22,10 +22,8 @@ export default function TaskList({todos, onTodoChange, deleteTodo}) {
                         data-taskid={task.id}
                         onChange={onTodoChange}
                       />
-
                       <Task checked={task.isChecked}>{task.task}</Task>
                     </StyledLabel>
-
                     <DeleteButton
                       type="button"
                       onClick={event => {
@@ -57,7 +55,7 @@ const Wrapper = styled.article`
 `;
 
 const StyledTitle = styled.h3`
-  font-size: 1.8rem;
+  font-size: var(--fontsize-large);
   padding: 10px;
 `;
 
@@ -77,7 +75,7 @@ const ListItem = styled.li`
   display: flex;
   list-style: none;
   justify-content: space-between;
-  font-size: 1.3rem;
+  font-size: var(--fontsize-medium);
   padding: 10px 0 10px 0;
 `;
 
