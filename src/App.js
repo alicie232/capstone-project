@@ -85,7 +85,8 @@ export default function App() {
 
   return (
     <>
-      <button onClick={() => setIsOpen(true)}>Open Form</button>
+      {/* Open Form */}
+      <AddTodoButton onClick={() => setIsOpen(true)}>+</AddTodoButton>
       <NewTodoForm open={isOpen} onClose={handleCloseForm} insertNewTodo={insertNewTodo} />
 
       <StyledHeader>Tidy up your life</StyledHeader>
@@ -104,4 +105,25 @@ const StyledHeader = styled.header`
   margin: 30px;
   text-align: center;
   font-size: var(--fontsize-large);
+`;
+
+const AddTodoButton = styled.button`
+  cursor: pointer;
+
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 4px;
+  bottom: 40px;
+  right: 40px;
+  width: 70px;
+  height: 70px;
+  border: none;
+  border-radius: 50%;
+  color: #f5f5f5;
+  text-decoration: none;
+  background-color: var(--color-highlight);
+  font-size: 2rem;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 `;
