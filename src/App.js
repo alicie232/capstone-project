@@ -23,6 +23,13 @@ export default function App() {
     }
   });
 
+  function handleTodos(event) {
+    const todoId = event.target.dataset.todoid;
+    const taskId = event.target.dataset.taskid;
+
+    updateTodo(todoId, taskId);
+  }
+
   function insertNewTodo(category, newTodo) {
     setTodos(todos => {
       return todos.map(todo => {
@@ -90,6 +97,7 @@ export default function App() {
       <StyledHeader>Tidy up your life</StyledHeader>
       <HomePage
         todos={todos}
+        onTodoCheck={handleTodos}
         insertNewTodo={insertNewTodo}
         updateTodo={updateTodo}
         taskTemplates={taskTemplates}

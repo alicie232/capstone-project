@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export default function TaskList({todos, onTodoChange, deleteTodo}) {
+export default function TaskList({todos, onTodoCheck, deleteTodo}) {
   return todos.map(todo => {
     return (
       <Wrapper key={todo.id}>
@@ -20,7 +20,7 @@ export default function TaskList({todos, onTodoChange, deleteTodo}) {
                         checked={task.isChecked}
                         data-todoid={todo.id}
                         data-taskid={task.id}
-                        onChange={onTodoChange}
+                        onChange={onTodoCheck}
                       />
                       <Task checked={task.isChecked}>{task.task}</Task>
                     </StyledLabel>
