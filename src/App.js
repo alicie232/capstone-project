@@ -85,10 +85,8 @@ export default function App() {
 
   return (
     <>
-      {/* Open Form */}
       <AddTodoButton onClick={() => setIsOpen(true)}>+</AddTodoButton>
       <NewTodoForm open={isOpen} onClose={handleCloseForm} insertNewTodo={insertNewTodo} />
-
       <StyledHeader>Tidy up your life</StyledHeader>
       <HomePage
         todos={todos}
@@ -109,7 +107,6 @@ const StyledHeader = styled.header`
 
 const AddTodoButton = styled.button`
   cursor: pointer;
-
   position: fixed;
   display: flex;
   justify-content: center;

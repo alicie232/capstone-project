@@ -35,11 +35,10 @@ export default function NewTodoForm({insertNewTodo, open, onClose}) {
     <>
       <Overlay />
       <ModalStyles>
-        {/* <StyledHeader>Aufgabe hinzufügen</StyledHeader> */}
         <CloseButton onClick={onClose}>&times;</CloseButton>
         <StyledForm onSubmit={handleSubmit}>
           <StyledLabelInput htmlFor="task">
-            Aufgabe hinzufügen:
+            Aufgabe hinzufügen
             <TaskInput
               id="task"
               type="text"
@@ -52,9 +51,8 @@ export default function NewTodoForm({insertNewTodo, open, onClose}) {
               required
             />
           </StyledLabelInput>
-
           <StyledLabelSelect htmlFor="category">
-            Kategorie:
+            Wiederholung
             <StyledSelect
               id="category"
               name="category"
@@ -73,7 +71,6 @@ export default function NewTodoForm({insertNewTodo, open, onClose}) {
               <option value="0">Sonntag</option>
             </StyledSelect>
           </StyledLabelSelect>
-
           <StyledSubmitButton type="submit">senden</StyledSubmitButton>
         </StyledForm>
         <StyledCloseButton onClick={onClose}>abbrechen</StyledCloseButton>
@@ -99,13 +96,10 @@ const ModalStyles = styled.div`
   background-color: #fff;
   padding: 50px;
   border-radius: 10px;
-
   z-index: 1;
-
   display: flex;
   flex-direction: column;
   gap: 10px;
-
   font-size: var(--fontsize-medium);
 `;
 
@@ -120,18 +114,9 @@ const CloseButton = styled.button`
   color: #f5f5f5;
   text-decoration: none;
   background-color: var(--color-highlight);
-
   position: fixed;
   top: 20px;
   right: 15px;
-
-  /* &:active {
-    background-color: ;
-  }
-
-  &:hover {
-    background-color: ;
-  } */
 `;
 
 const StyledForm = styled.form`
@@ -149,7 +134,6 @@ const StyledLabelInput = styled.label`
 
 const TaskInput = styled.input`
   padding-left: 5px;
-  /* border-radius: 8px; */
   height: 35px;
   border: none;
   border-bottom: 1px solid;
