@@ -35,8 +35,8 @@ export default function NewTodoForm({insertNewTodo, open, onClose}) {
     <>
       <Overlay />
       <ModalStyles>
-        <StyledHeader>Aufgabe hinzufügen</StyledHeader>
-
+        {/* <StyledHeader>Aufgabe hinzufügen</StyledHeader> */}
+        <CloseButton onClick={onClose}>&times;</CloseButton>
         <StyledForm onSubmit={handleSubmit}>
           <StyledLabelInput htmlFor="task">
             Aufgabe hinzufügen:
@@ -76,7 +76,7 @@ export default function NewTodoForm({insertNewTodo, open, onClose}) {
 
           <StyledSubmitButton type="submit">senden</StyledSubmitButton>
         </StyledForm>
-        <StyledCloseButton onClick={onClose}>zurück</StyledCloseButton>
+        <StyledCloseButton onClick={onClose}>abbrechen</StyledCloseButton>
       </ModalStyles>
     </>
   );
@@ -98,51 +98,101 @@ const ModalStyles = styled.div`
   transform: translate(-50%, -50%);
   background-color: #fff;
   padding: 50px;
+  border-radius: 10px;
+
   z-index: 1;
 
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 10px;
+
+  font-size: var(--fontsize-medium);
 `;
 
-const StyledHeader = styled.header`
-  padding-bottom: 10px;
+const CloseButton = styled.button`
+  display: flex;
+  justify-content: center;
+  line-height: 27px;
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 50%;
+  color: #f5f5f5;
+  text-decoration: none;
+  background-color: var(--color-highlight);
+
+  position: fixed;
+  top: 20px;
+  right: 15px;
+
+  /* &:active {
+    background-color: ;
+  }
+
+  &:hover {
+    background-color: ;
+  } */
 `;
 
 const StyledForm = styled.form`
-  max-width: 375px;
-  margin: auto;
-  padding: 20px;
+  width: 250px;
   display: flex;
   flex-direction: column;
-  gap: 5px;
-  border: solid;
-  border-radius: 15px;
+  gap: 20px;
 `;
 
 const StyledLabelInput = styled.label`
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 10px;
 `;
 
-const TaskInput = styled.input``;
+const TaskInput = styled.input`
+  padding-left: 5px;
+  /* border-radius: 8px; */
+  height: 35px;
+  border: none;
+  border-bottom: 1px solid;
+  margin-top: 10px;
+`;
 
 const StyledLabelSelect = styled.label`
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 10px;
 `;
 
 const StyledSelect = styled.select`
-  width: 100px;
-  font-size: 16px;
+  background-color: transparent;
+  border-radius: 8px;
+  height: 35px;
+  padding-left: 5px;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
 `;
 
 const StyledSubmitButton = styled.button`
-  width: 100px;
+  width: 100%;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  background-color: var(--color-highlight);
+  padding: 8px 15px 10px;
+
+  &:active {
+    background-color: #08541f;
+  }
 `;
 
 const StyledCloseButton = styled.button`
-  width: 100px;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  background-color: var(--color-highlight);
+  padding: 8px 15px 10px;
+
+  &:active {
+    background-color: #560808;
+  }
 `;
