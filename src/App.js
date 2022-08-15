@@ -17,11 +17,10 @@ export default function App() {
   const [taskTemplates] = useState(() => {
     return templatesFromLocal ?? dailyTodos;
   });
-  const [todos, setTodos] = useState(() => {
-    const todaysTodos = taskTemplates.filter(todo => todo.weekday === new Date().getDay() || todo.weekday === 42);
 
+  const [todos, setTodos] = useState(() => {
     if (todosFromLocal === null) {
-      return todaysTodos;
+      return dailyTodos;
     } else {
       return todosFromLocal;
     }
@@ -112,7 +111,7 @@ export default function App() {
           path="/"
           element={
             <HomePage
-              todos={todos}
+              todos={todos.filter(todo => todo.weekday === new Date().getDay() || todo.weekday === 42)}
               onTodoCheck={handleTodos}
               insertNewTodo={insertNewTodo}
               updateTodo={updateTodo}
@@ -131,6 +130,7 @@ export default function App() {
               insertNewTodo={insertNewTodo}
               taskTemplates={taskTemplates}
               deleteTodo={handleDeleteTodo}
+              edit={edit}
             />
           }
         />
