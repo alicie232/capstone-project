@@ -18,11 +18,10 @@ export default function NewTodoForm({insertNewTodo, open, onClose}) {
     writeToLocalStorage(
       'TaskTemplates',
       currentTemplates.map(template => {
-        if (template.tasks !== undefined) {
-          if (template.weekday === category) {
-            return {...template, tasks: [...template.tasks, newTask]};
-          }
+        if (template.tasks !== undefined && template.weekday === category) {
+          return {...template, tasks: [...template.tasks, newTask]};
         }
+
         return template;
       })
     );
@@ -31,52 +30,54 @@ export default function NewTodoForm({insertNewTodo, open, onClose}) {
     setTask('');
   }
 
-  return open ? (
-    <>
-      <Overlay />
-      <ModalStyles>
-        <CloseButton onClick={onClose}>&times;</CloseButton>
-        <StyledForm onSubmit={handleSubmit}>
-          <StyledLabelInput htmlFor="task">
-            Aufgabe hinzufügen
-            <TaskInput
-              id="task"
-              type="text"
-              value={task}
-              onChange={e => {
-                setTask(e.target.value);
-              }}
-              placeholder="Aufgabe"
-              autoComplete="off"
-              required
-            />
-          </StyledLabelInput>
-          <StyledLabelSelect htmlFor="category">
-            Wiederholung
-            <StyledSelect
-              id="category"
-              name="category"
-              value={category}
-              onChange={e => {
-                setCategory(Number(e.target.value));
-              }}
-            >
-              <option value="42">täglich</option>
-              <option value="1">Montag</option>
-              <option value="2">Dienstag</option>
-              <option value="3">Mittwoch</option>
-              <option value="4">Donnerstag</option>
-              <option value="5">Freitag</option>
-              <option value="6">Samstag</option>
-              <option value="0">Sonntag</option>
-            </StyledSelect>
-          </StyledLabelSelect>
-          <StyledSubmitButton type="submit">senden</StyledSubmitButton>
-        </StyledForm>
-        <StyledCloseButton onClick={onClose}>abbrechen</StyledCloseButton>
-      </ModalStyles>
-    </>
-  ) : null;
+  return (
+    open && (
+      <>
+        <Overlay />
+        <ModalStyles>
+          <CloseButton onClick={onClose}>&times;</CloseButton>
+          <StyledForm onSubmit={handleSubmit}>
+            <StyledLabelInput htmlFor="task">
+              Aufgabe hinzufügen
+              <TaskInput
+                id="task"
+                type="text"
+                value={task}
+                onChange={e => {
+                  setTask(e.target.value);
+                }}
+                placeholder="Aufgabe"
+                autoComplete="off"
+                required
+              />
+            </StyledLabelInput>
+            <StyledLabelSelect htmlFor="category">
+              Wiederholung
+              <StyledSelect
+                id="category"
+                name="category"
+                value={category}
+                onChange={e => {
+                  setCategory(Number(e.target.value));
+                }}
+              >
+                <option value="42">täglich</option>
+                <option value="1">Montag</option>
+                <option value="2">Dienstag</option>
+                <option value="3">Mittwoch</option>
+                <option value="4">Donnerstag</option>
+                <option value="5">Freitag</option>
+                <option value="6">Samstag</option>
+                <option value="0">Sonntag</option>
+              </StyledSelect>
+            </StyledLabelSelect>
+            <StyledSubmitButton type="submit">senden</StyledSubmitButton>
+          </StyledForm>
+          <StyledCloseButton onClick={onClose}>abbrechen</StyledCloseButton>
+        </ModalStyles>
+      </>
+    )
+  );
 }
 
 const Overlay = styled.div`
