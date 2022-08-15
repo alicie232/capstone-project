@@ -1,4 +1,4 @@
-import {Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import styled from 'styled-components';
 
 export default function Navigation() {
@@ -19,12 +19,16 @@ const Nav = styled.nav`
   font-size: var(--fontsize-medium);
 `;
 
-const StyledLink = styled(Link)`
+const StyledLink = styled(NavLink)`
   flex: 1;
-  background: var(--color-highlight);
+  background: #63c5da;
   text-decoration: none;
   color: white;
   padding: 10px;
   display: grid;
   place-items: center;
+
+  &.active {
+    background-color: var(--color-highlight);
+  }
 `;
