@@ -92,7 +92,9 @@ export default function App() {
 
   return (
     <>
-      <AddTodoButton onClick={() => setIsOpen(true)}>+</AddTodoButton>
+      <AddTodoButton type="button" aria-label="Aufgabe hinzufügen" onClick={() => setIsOpen(true)}>
+        +
+      </AddTodoButton>
       <NewTodoForm open={isOpen} onClose={handleCloseForm} insertNewTodo={insertNewTodo} />
       <StyledHeader>Tidy up your life</StyledHeader>
       <HomePage

@@ -30,8 +30,8 @@ export default function NewTodoForm({insertNewTodo, open, onClose}) {
     insertNewTodo(category, newTask);
     setTask('');
   }
-  if (!open) return null;
-  return (
+
+  return open ? (
     <>
       <Overlay />
       <ModalStyles>
@@ -76,8 +76,9 @@ export default function NewTodoForm({insertNewTodo, open, onClose}) {
         <StyledCloseButton onClick={onClose}>abbrechen</StyledCloseButton>
       </ModalStyles>
     </>
-  );
+  ) : null;
 }
+
 const Overlay = styled.div`
   position: fixed;
   top: 0;
