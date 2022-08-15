@@ -4,6 +4,7 @@ import HomePage from './pages/HomePage';
 import NewTodoForm from './components/NewTodoForm';
 import {loadFromLocalStorage, writeToLocalStorage} from './util/localstorage';
 import {dailyTodos} from './db';
+import Navigation from './components/Navigation/Navigation';
 
 const templatesFromLocal = loadFromLocalStorage('TaskTemplates');
 const todosFromLocal = loadFromLocalStorage(new Date().toLocaleDateString());
@@ -93,6 +94,7 @@ export default function App() {
 
   return (
     <>
+      <StyledHeader>Tidy up your life</StyledHeader>
       <AddTodoButton type="button" aria-label="Aufgabe hinzufügen" onClick={() => setIsOpen(true)}>
         +
       </AddTodoButton>
@@ -100,7 +102,9 @@ export default function App() {
         <img src="./assets/icons/button_edit.svg" alt="edit todo" />
       </EditButton>
       <NewTodoForm open={isOpen} onClose={handleCloseForm} insertNewTodo={insertNewTodo} />
-      <StyledHeader>Tidy up your life</StyledHeader>
+
+      <Navigation />
+
       <HomePage
         todos={todos}
         onTodoCheck={handleTodos}
