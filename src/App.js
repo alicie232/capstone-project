@@ -10,6 +10,7 @@ const todosFromLocal = loadFromLocalStorage(new Date().toLocaleDateString());
 
 export default function App() {
   const [isOpen, setIsOpen] = useState(false);
+  const [edit, setEdit] = useState(false);
   const [taskTemplates] = useState(() => {
     return templatesFromLocal ?? dailyTodos;
   });
@@ -95,6 +96,9 @@ export default function App() {
       <AddTodoButton type="button" aria-label="Aufgabe hinzufügen" onClick={() => setIsOpen(true)}>
         +
       </AddTodoButton>
+      <EditButton onClick={() => setEdit(toggle => !toggle)}>
+        <img src="./assets/icons/button_edit.svg" alt="edit todo" />
+      </EditButton>
       <NewTodoForm open={isOpen} onClose={handleCloseForm} insertNewTodo={insertNewTodo} />
       <StyledHeader>Tidy up your life</StyledHeader>
       <HomePage
@@ -104,6 +108,7 @@ export default function App() {
         updateTodo={updateTodo}
         taskTemplates={taskTemplates}
         deleteTodo={handleDeleteTodo}
+        edit={edit}
       />
     </>
   );
@@ -113,6 +118,27 @@ const StyledHeader = styled.header`
   margin: 30px;
   text-align: center;
   font-size: var(--fontsize-large);
+`;
+
+const EditButton = styled.button`
+  cursor: pointer;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 4px;
+  bottom: 120px;
+  right: 40px;
+  width: 70px;
+  height: 70px;
+  border: none;
+  border-radius: 50%;
+  color: #f5f5f5;
+  text-decoration: none;
+  background-color: red;
+  font-size: 1rem;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  z-index: 1;
 `;
 
 const AddTodoButton = styled.button`
