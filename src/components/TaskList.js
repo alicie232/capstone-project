@@ -89,8 +89,3 @@ const Task = styled.span`
     return checked && 'line-through';
   }};
 `;
-
-const DeleteButton = styled.button`
-  border: none;
-  background-color: transparent;
-`;
