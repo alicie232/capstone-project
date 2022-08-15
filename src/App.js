@@ -14,13 +14,14 @@ const todosFromLocal = loadFromLocalStorage(new Date().toLocaleDateString());
 export default function App() {
   const [isOpen, setIsOpen] = useState(false);
   const [edit, setEdit] = useState(false);
+
   const [taskTemplates] = useState(() => {
     return templatesFromLocal ?? dailyTodos;
   });
 
   const [todos, setTodos] = useState(() => {
     if (todosFromLocal === null) {
-      return dailyTodos;
+      return taskTemplates;
     } else {
       return todosFromLocal;
     }
@@ -96,6 +97,7 @@ export default function App() {
   return (
     <>
       <StyledHeader>Tidy up your life</StyledHeader>
+
       <AddTodoButton type="button" aria-label="Aufgabe hinzufügen" onClick={() => setIsOpen(true)}>
         +
       </AddTodoButton>
@@ -103,9 +105,7 @@ export default function App() {
         <img src="./assets/icons/button_edit.svg" alt="edit todo" />
       </EditButton>
       <NewTodoForm open={isOpen} onClose={handleCloseForm} insertNewTodo={insertNewTodo} />
-
       <Navigation />
-
       <Routes>
         <Route
           path="/"

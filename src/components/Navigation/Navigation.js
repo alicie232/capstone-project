@@ -14,7 +14,6 @@ const Nav = styled.nav`
   position: sticky;
   top: 0;
   display: flex;
-
   margin: 10px;
   z-index: 1;
   font-size: var(--fontsize-medium);
