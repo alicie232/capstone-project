@@ -4,6 +4,9 @@ import HomePage from './pages/HomePage';
 import NewTodoForm from './components/NewTodoForm';
 import {loadFromLocalStorage, writeToLocalStorage} from './util/localstorage';
 import {dailyTodos} from './db';
+import Navigation from './components/Navigation/Navigation';
+import {Route, Routes} from 'react-router-dom';
+import TaskList from './components/TaskList';
 
 const templatesFromLocal = loadFromLocalStorage('TaskTemplates');
 const todosFromLocal = loadFromLocalStorage(new Date().toLocaleDateString());
@@ -11,14 +14,14 @@ const todosFromLocal = loadFromLocalStorage(new Date().toLocaleDateString());
 export default function App() {
   const [isOpen, setIsOpen] = useState(false);
   const [edit, setEdit] = useState(false);
+
   const [taskTemplates] = useState(() => {
     return templatesFromLocal ?? dailyTodos;
   });
-  const [todos, setTodos] = useState(() => {
-    const todaysTodos = taskTemplates.filter(todo => todo.weekday === new Date().getDay() || todo.weekday === 42);
 
+  const [todos, setTodos] = useState(() => {
     if (todosFromLocal === null) {
-      return todaysTodos;
+      return taskTemplates;
     } else {
       return todosFromLocal;
     }
@@ -93,6 +96,8 @@ export default function App() {
 
   return (
     <>
+      <StyledHeader>Tidy up your life</StyledHeader>
+
       <AddTodoButton type="button" aria-label="Aufgabe hinzufügen" onClick={() => setIsOpen(true)}>
         +
       </AddTodoButton>
@@ -100,16 +105,36 @@ export default function App() {
         <img src="./assets/icons/button_edit.svg" alt="edit todo" />
       </EditButton>
       <NewTodoForm open={isOpen} onClose={handleCloseForm} insertNewTodo={insertNewTodo} />
-      <StyledHeader>Tidy up your life</StyledHeader>
-      <HomePage
-        todos={todos}
-        onTodoCheck={handleTodos}
-        insertNewTodo={insertNewTodo}
-        updateTodo={updateTodo}
-        taskTemplates={taskTemplates}
-        deleteTodo={handleDeleteTodo}
-        edit={edit}
-      />
+      <Navigation />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <HomePage
+              todos={todos.filter(todo => todo.weekday === new Date().getDay() || todo.weekday === 42)}
+              onTodoCheck={handleTodos}
+              insertNewTodo={insertNewTodo}
+              updateTodo={updateTodo}
+              taskTemplates={taskTemplates}
+              deleteTodo={handleDeleteTodo}
+              edit={edit}
+            />
+          }
+        />
+        <Route
+          path="all"
+          element={
+            <TaskList
+              todos={todos}
+              onTodoCheck={handleTodos}
+              insertNewTodo={insertNewTodo}
+              taskTemplates={taskTemplates}
+              deleteTodo={handleDeleteTodo}
+              edit={edit}
+            />
+          }
+        />
+      </Routes>
     </>
   );
 }

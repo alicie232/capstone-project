@@ -39,10 +39,11 @@ export default function TaskList({todos, onTodoCheck, deleteTodo, edit}) {
 }
 
 const Wrapper = styled.article`
+  max-width: 375px;
+  margin: auto;
   border: solid;
   border-radius: 15px;
   box-shadow: 3px 4px 20px rgba(0, 0, 0, 0.2);
-  margin: 5px;
   padding: 20px;
   margin-bottom: 50px;
 `;
