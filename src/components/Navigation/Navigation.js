@@ -21,7 +21,7 @@ const Nav = styled.nav`
 
 const StyledLink = styled(NavLink)`
   flex: 1;
-  background: #63c5da;
+  background: #000000;
   text-decoration: none;
   color: white;
   padding: 10px;
@@ -29,6 +29,6 @@ const StyledLink = styled(NavLink)`
   place-items: center;
 
   &.active {
-    background-color: var(--color-highlight);
+    background-color: #63c5da;
   }
 `;
