@@ -1,15 +1,15 @@
 import styled from 'styled-components';
-import DailyTasks from '../components/DailyTasks';
+import TaskList from '../components/TaskList';
 
-export default function HomePage({todos, insertNewTodo, updateTodo, taskTemplates, deleteTodo}) {
+export default function HomePage({todos, onTodoCheck, insertNewTodo, taskTemplates, deleteTodo}) {
   return (
     <>
       <StyledHeader>Aktuelle Aufgaben</StyledHeader>
       <Wrapper>
-        <DailyTasks
+        <TaskList
           todos={todos}
+          onTodoCheck={onTodoCheck}
           insertNewTodo={insertNewTodo}
-          updateTodo={updateTodo}
           taskTemplates={taskTemplates}
           deleteTodo={deleteTodo}
         />
@@ -24,7 +24,7 @@ const Wrapper = styled.div`
 `;
 
 const StyledHeader = styled.header`
-  font-size: 2rem;
+  font-size: var(--fontsize-large);
   text-align: center;
   padding: 20px;
 `;

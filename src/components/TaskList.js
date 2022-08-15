@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export default function TaskList({todos, onTodoChange, deleteTodo}) {
+export default function TaskList({todos, onTodoCheck, deleteTodo}) {
   return todos.map(todo => {
     return (
       <Wrapper key={todo.id}>
@@ -20,12 +20,10 @@ export default function TaskList({todos, onTodoChange, deleteTodo}) {
                         checked={task.isChecked}
                         data-todoid={todo.id}
                         data-taskid={task.id}
-                        onChange={onTodoChange}
+                        onChange={onTodoCheck}
                       />
-
                       <Task checked={task.isChecked}>{task.task}</Task>
                     </StyledLabel>
-
                     <DeleteButton
                       type="button"
                       onClick={event => {
@@ -57,7 +55,7 @@ const Wrapper = styled.article`
 `;
 
 const StyledTitle = styled.h3`
-  font-size: 1.8rem;
+  font-size: var(--fontsize-large);
   padding: 10px;
 `;
 
@@ -77,7 +75,7 @@ const ListItem = styled.li`
   display: flex;
   list-style: none;
   justify-content: space-between;
-  font-size: 1.3rem;
+  font-size: var(--fontsize-medium);
   padding: 10px 0 10px 0;
 `;
 
