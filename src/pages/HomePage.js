@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import TaskList from '../components/TaskList';
 
-export default function HomePage({todos, onTodoCheck, insertNewTodo, taskTemplates, deleteTodo}) {
+export default function HomePage({todos, onTodoCheck, insertNewTodo, taskTemplates, deleteTodo, edit}) {
   return (
     <>
       <StyledHeader>Aktuelle Aufgaben</StyledHeader>
@@ -12,6 +12,7 @@ export default function HomePage({todos, onTodoCheck, insertNewTodo, taskTemplat
           insertNewTodo={insertNewTodo}
           taskTemplates={taskTemplates}
           deleteTodo={deleteTodo}
+          edit={edit}
         />
       </Wrapper>
     </>

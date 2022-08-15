@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import DeleteTaskButton from './Button/DeleteTaskButton';
 
-export default function TaskList({todos, onTodoCheck, deleteTodo}) {
+export default function TaskList({todos, onTodoCheck, deleteTodo, edit}) {
   return todos.map(todo => {
     return (
       <Wrapper key={todo.id}>
@@ -24,15 +25,7 @@ export default function TaskList({todos, onTodoCheck, deleteTodo}) {
                       />
                       <Task checked={task.isChecked}>{task.task}</Task>
                     </StyledLabel>
-                    <DeleteButton
-                      type="button"
-                      onClick={event => {
-                        event.stopPropagation();
-                        deleteTodo(task.id);
-                      }}
-                    >
-                      <img src="../assets/icons/button-delete.svg" alt="delete" />
-                    </DeleteButton>
+                    {edit && <DeleteTaskButton task={task} deleteTodo={deleteTodo} />}
                   </ListItem>
                   <hr />
                 </div>
