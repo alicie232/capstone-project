@@ -7,11 +7,14 @@ import {dailyTodos} from './db';
 import Navigation from './components/Navigation/Navigation';
 import {Route, Routes} from 'react-router-dom';
 import TaskList from './components/TaskList';
+import CurrentDate from './components/CurrentDate';
 
 const templatesFromLocal = loadFromLocalStorage('TaskTemplates');
 const todosFromLocal = loadFromLocalStorage(new Date().toLocaleDateString());
 
 export default function App() {
+  const [time, setTime] = useState(CurrentDate);
+
   const [isOpen, setIsOpen] = useState(false);
   const [edit, setEdit] = useState(false);
 
@@ -94,10 +97,20 @@ export default function App() {
     writeToLocalStorage(new Date().toLocaleDateString(), todos);
   }, [todos]);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTime(CurrentDate);
+    }, 1000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [time]);
+
   return (
     <>
       <StyledHeader>Tidy up your life</StyledHeader>
-
+      {time}
       <AddTodoButton type="button" aria-label="Aufgabe hinzufügen" onClick={() => setIsOpen(true)}>
         +
       </AddTodoButton>
