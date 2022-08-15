@@ -5,6 +5,8 @@ import NewTodoForm from './components/NewTodoForm';
 import {loadFromLocalStorage, writeToLocalStorage} from './util/localstorage';
 import {dailyTodos} from './db';
 import Navigation from './components/Navigation/Navigation';
+import {Route, Routes} from 'react-router-dom';
+import TaskList from './components/TaskList';
 
 const templatesFromLocal = loadFromLocalStorage('TaskTemplates');
 const todosFromLocal = loadFromLocalStorage(new Date().toLocaleDateString());
@@ -105,15 +107,34 @@ export default function App() {
 
       <Navigation />
 
-      <HomePage
-        todos={todos}
-        onTodoCheck={handleTodos}
-        insertNewTodo={insertNewTodo}
-        updateTodo={updateTodo}
-        taskTemplates={taskTemplates}
-        deleteTodo={handleDeleteTodo}
-        edit={edit}
-      />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <HomePage
+              todos={todos}
+              onTodoCheck={handleTodos}
+              insertNewTodo={insertNewTodo}
+              updateTodo={updateTodo}
+              taskTemplates={taskTemplates}
+              deleteTodo={handleDeleteTodo}
+              edit={edit}
+            />
+          }
+        />
+        <Route
+          path="all"
+          element={
+            <TaskList
+              todos={todos}
+              onTodoCheck={handleTodos}
+              insertNewTodo={insertNewTodo}
+              taskTemplates={taskTemplates}
+              deleteTodo={handleDeleteTodo}
+            />
+          }
+        />
+      </Routes>
     </>
   );
 }
