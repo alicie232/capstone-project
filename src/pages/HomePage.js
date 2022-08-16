@@ -45,7 +45,7 @@ const StyledAdvice = styled.div`
 
 const StyledTime = styled.div`
   padding: 10px;
-  padding-left: 0px;
+  padding-left: 0;
   padding-bottom: 20px;
   text-align: center;
   font-size: var(--fontsize-medium);
