@@ -1,13 +1,16 @@
 import styled from 'styled-components';
 
-export default function HomePage({advices, time, counter}) {
+export default function HomePage({advices, time}) {
   return (
     <>
       <StyledHeader>
         <StyledSpanHeaderTop>Tidy Up</StyledSpanHeaderTop>
         <StyledSpanHeaderBottom>Your Life</StyledSpanHeaderBottom>
       </StyledHeader>
-      {time}
+      <StyledAdvice>
+        <em>&quot;{advices}&quot;</em>
+      </StyledAdvice>
+      <StyledTime>{time}</StyledTime>
     </>
   );
 }
@@ -32,4 +35,18 @@ const StyledSpanHeaderBottom = styled.span`
   align-self: center;
   padding-left: 90px;
   font-size: 1.5rem;
+`;
+
+const StyledAdvice = styled.div`
+  padding: 20px;
+  text-align: center;
+  font-size: var(--fontsize-medium);
+`;
+
+const StyledTime = styled.div`
+  padding: 10px;
+  padding-left: 0;
+  padding-bottom: 20px;
+  text-align: center;
+  font-size: var(--fontsize-medium);
 `;
