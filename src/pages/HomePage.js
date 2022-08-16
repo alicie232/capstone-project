@@ -7,6 +7,9 @@ export default function HomePage({advices, time, counter}) {
         <StyledSpanHeaderTop>Tidy Up</StyledSpanHeaderTop>
         <StyledSpanHeaderBottom>Your Life</StyledSpanHeaderBottom>
       </StyledHeader>
+      <StyledAdvice>
+        <em>&quot;{advices}&quot;</em>
+      </StyledAdvice>
       {time}
     </>
   );
@@ -32,4 +35,10 @@ const StyledSpanHeaderBottom = styled.span`
   align-self: center;
   padding-left: 90px;
   font-size: 1.5rem;
+`;
+
+const StyledAdvice = styled.div`
+  padding: 20px;
+  text-align: center;
+  font-size: var(--fontsize-medium);
 `;

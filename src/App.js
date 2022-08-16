@@ -132,9 +132,8 @@ export default function App() {
     <>
       <NewTodoForm open={isOpen} onClose={handleCloseForm} insertNewTodo={insertNewTodo} />
       <Navigation />
-      {advices}
       <Routes>
-        <Route path="/" element={<HomePage time={time} />} />
+        <Route path="/" element={<HomePage advices={advices} time={time} />} />
         <Route
           path="all"
           element={
