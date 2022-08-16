@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export default function HomePage({advices, time, counter}) {
+export default function HomePage({advices, time}) {
   return (
     <>
       <StyledHeader>
@@ -10,7 +10,7 @@ export default function HomePage({advices, time, counter}) {
       <StyledAdvice>
         <em>&quot;{advices}&quot;</em>
       </StyledAdvice>
-      {time}
+      <StyledTime>{time}</StyledTime>
     </>
   );
 }
@@ -39,6 +39,14 @@ const StyledSpanHeaderBottom = styled.span`
 
 const StyledAdvice = styled.div`
   padding: 20px;
+  text-align: center;
+  font-size: var(--fontsize-medium);
+`;
+
+const StyledTime = styled.div`
+  padding: 10px;
+  padding-left: 0px;
+  padding-bottom: 20px;
   text-align: center;
   font-size: var(--fontsize-medium);
 `;
