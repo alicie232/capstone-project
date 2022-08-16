@@ -48,7 +48,7 @@ const Wrapper = styled.article`
   padding: 20px;
   margin-bottom: 50px;
 
-  &:before {
+  &::before {
     content: '';
     z-index: -1;
     position: absolute;
@@ -57,14 +57,14 @@ const Wrapper = styled.article`
     bottom: 0;
     left: 0;
     background: linear-gradient(-45deg, #f2b5d4 0%, #7bdff2 100%);
-    transform: translate3d(0px, 20px, 0) scale(0.95);
+    transform: translate3d(0, 20px, 0) scale(0.95);
     filter: blur(20px);
     opacity: var(0.7);
     transition: opacity 0.3s;
     border-radius: inherit;
   }
 
-  &:after {
+  &::after {
     content: '';
     z-index: -1;
     position: absolute;

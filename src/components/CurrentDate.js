@@ -16,7 +16,6 @@ export default function CurrentDate() {
 }
 
 const StyledDate = styled.div`
-  color: red;
   margin: 10px;
   padding: 20px;
 `;

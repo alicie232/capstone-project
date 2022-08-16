@@ -17,7 +17,7 @@ export default styled.createGlobalStyle`
   }
 
   body {
-    margin: 0;
+    margin-bottom: 100px;
     font-family: 'Open Sans', sans-serif;
   }
 

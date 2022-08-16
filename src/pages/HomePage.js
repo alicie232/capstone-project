@@ -14,19 +14,17 @@ export default function HomePage({advices, time, counter}) {
 
 const StyledHeader = styled.header`
   position: relative;
-
   display: flex;
   flex-direction: column;
   border: none;
   border-radius: 15px;
   padding: 20px;
   padding-right: 40px;
-
   margin: 40px;
   margin-right: 90px;
   text-align: center;
   font-size: 2.5rem;
-  font-family: Besley;
+  font-family: 'Besley*', sans-serif;
 `;
 
 const StyledSpanHeaderTop = styled.span``;
