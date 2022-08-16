@@ -28,6 +28,22 @@ export default function App() {
     }
   });
 
+  const [advices, setAdvices] = useState([]);
+
+  async function fetchData() {
+    try {
+      const response = await fetch('https://api.adviceslip.com/advice');
+      const data = await response.json();
+      setAdvices(data.slip.advice);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   function handleTodos(event) {
     const todoId = event.target.dataset.todoid;
     const taskId = event.target.dataset.taskid;
@@ -116,6 +132,7 @@ export default function App() {
     <>
       <NewTodoForm open={isOpen} onClose={handleCloseForm} insertNewTodo={insertNewTodo} />
       <Navigation />
+      {advices}
       <Routes>
         <Route path="/" element={<HomePage time={time} />} />
         <Route
