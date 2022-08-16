@@ -1,5 +1,4 @@
 import {useState, useEffect} from 'react';
-import styled from 'styled-components';
 import HomePage from './pages/HomePage';
 import NewTodoForm from './components/NewTodoForm';
 import {loadFromLocalStorage, writeToLocalStorage} from './util/localstorage';
@@ -7,18 +6,20 @@ import {dailyTodos} from './db';
 import Navigation from './components/Navigation/Navigation';
 import {Route, Routes} from 'react-router-dom';
 import TaskList from './components/TaskList';
+import CurrentDate from './components/CurrentDate';
+import NewTodo from './components/NewTodo';
+import EditTodo from './components/EditTodo';
 
 const templatesFromLocal = loadFromLocalStorage('TaskTemplates');
 const todosFromLocal = loadFromLocalStorage(new Date().toLocaleDateString());
 
 export default function App() {
+  const [time, setTime] = useState(CurrentDate);
   const [isOpen, setIsOpen] = useState(false);
   const [edit, setEdit] = useState(false);
-
   const [taskTemplates] = useState(() => {
     return templatesFromLocal ?? dailyTodos;
   });
-
   const [todos, setTodos] = useState(() => {
     if (todosFromLocal === null) {
       return taskTemplates;
@@ -30,7 +31,6 @@ export default function App() {
   function handleTodos(event) {
     const todoId = event.target.dataset.todoid;
     const taskId = event.target.dataset.taskid;
-
     updateTodo(todoId, taskId);
   }
 
@@ -86,6 +86,14 @@ export default function App() {
     setIsOpen(false);
   }
 
+  function handleOpenForm() {
+    setIsOpen(true);
+  }
+
+  function handleEditTodo() {
+    setEdit(toggle => !toggle);
+  }
+
   useEffect(() => {
     writeToLocalStorage('TaskTemplates', taskTemplates);
   }, [taskTemplates]);
@@ -94,94 +102,55 @@ export default function App() {
     writeToLocalStorage(new Date().toLocaleDateString(), todos);
   }, [todos]);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTime(CurrentDate);
+    }, 1000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [time]);
+
   return (
     <>
-      <StyledHeader>Tidy up your life</StyledHeader>
-
-      <AddTodoButton type="button" aria-label="Aufgabe hinzufügen" onClick={() => setIsOpen(true)}>
-        +
-      </AddTodoButton>
-      <EditButton onClick={() => setEdit(toggle => !toggle)}>
-        <img src="./assets/icons/button_edit.svg" alt="edit todo" />
-      </EditButton>
       <NewTodoForm open={isOpen} onClose={handleCloseForm} insertNewTodo={insertNewTodo} />
       <Navigation />
       <Routes>
-        <Route
-          path="/"
-          element={
-            <HomePage
-              todos={todos.filter(todo => todo.weekday === new Date().getDay() || todo.weekday === 42)}
-              onTodoCheck={handleTodos}
-              insertNewTodo={insertNewTodo}
-              updateTodo={updateTodo}
-              taskTemplates={taskTemplates}
-              deleteTodo={handleDeleteTodo}
-              edit={edit}
-            />
-          }
-        />
+        <Route path="/" element={<HomePage time={time} />} />
         <Route
           path="all"
           element={
-            <TaskList
-              todos={todos}
-              onTodoCheck={handleTodos}
-              insertNewTodo={insertNewTodo}
-              taskTemplates={taskTemplates}
-              deleteTodo={handleDeleteTodo}
-              edit={edit}
-            />
+            <>
+              <EditTodo onEditTodo={handleEditTodo} />
+              <TaskList
+                todos={todos}
+                onTodoCheck={handleTodos}
+                insertNewTodo={insertNewTodo}
+                taskTemplates={taskTemplates}
+                deleteTodo={handleDeleteTodo}
+                edit={edit}
+              />
+            </>
+          }
+        />
+        <Route
+          path="today"
+          element={
+            <>
+              <NewTodo onOpenForm={handleOpenForm} />
+              <TaskList
+                todos={todos.filter(todo => todo.weekday === new Date().getDay() || todo.weekday === 42)}
+                onTodoCheck={handleTodos}
+                insertNewTodo={insertNewTodo}
+                taskTemplates={taskTemplates}
+                deleteTodo={handleDeleteTodo}
+                edit={edit}
+              />
+            </>
           }
         />
       </Routes>
     </>
   );
 }
-
-const StyledHeader = styled.header`
-  margin: 30px;
-  text-align: center;
-  font-size: var(--fontsize-large);
-`;
-
-const EditButton = styled.button`
-  cursor: pointer;
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-bottom: 4px;
-  bottom: 120px;
-  right: 40px;
-  width: 70px;
-  height: 70px;
-  border: none;
-  border-radius: 50%;
-  color: #f5f5f5;
-  text-decoration: none;
-  background-color: red;
-  font-size: 1rem;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-  z-index: 1;
-`;
-
-const AddTodoButton = styled.button`
-  cursor: pointer;
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-bottom: 4px;
-  bottom: 40px;
-  right: 40px;
-  width: 70px;
-  height: 70px;
-  border: none;
-  border-radius: 50%;
-  color: #f5f5f5;
-  text-decoration: none;
-  background-color: var(--color-highlight);
-  font-size: 2rem;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-`;

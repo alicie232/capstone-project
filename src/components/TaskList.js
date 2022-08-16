@@ -39,13 +39,42 @@ export default function TaskList({todos, onTodoCheck, deleteTodo, edit}) {
 }
 
 const Wrapper = styled.article`
-  max-width: 375px;
-  margin: auto;
-  border: solid;
+  position: relative;
+  background: white;
+  max-width: 300px;
   border-radius: 15px;
-  box-shadow: 3px 4px 20px rgba(0, 0, 0, 0.2);
+  margin: auto;
+  margin-top: 40px;
   padding: 20px;
   margin-bottom: 50px;
+
+  &::before {
+    content: '';
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(-45deg, #f2b5d4 0%, #7bdff2 100%);
+    transform: translate3d(0, 20px, 0) scale(0.95);
+    filter: blur(20px);
+    opacity: var(0.7);
+    transition: opacity 0.3s;
+    border-radius: inherit;
+  }
+
+  &::after {
+    content: '';
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: inherit;
+    border-radius: inherit;
+  }
 `;
 
 const StyledTitle = styled.h3`
