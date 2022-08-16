@@ -24,11 +24,12 @@ const StyledHeader = styled.header`
   margin-right: 90px;
   text-align: center;
   font-size: 2.5rem;
-  font-family: 'Besley*', sans-serif;
+  font-family: 'Besley', serif;
 `;
 
 const StyledSpanHeaderTop = styled.span``;
 const StyledSpanHeaderBottom = styled.span`
-  align-self: flex-end;
+  align-self: center;
+  padding-left: 90px;
   font-size: 1.5rem;
 `;
