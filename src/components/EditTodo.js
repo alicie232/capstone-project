@@ -4,7 +4,7 @@ export default function EditTodo({onEditTodo}) {
   return (
     <>
       <EditButton onClick={onEditTodo}>
-        <img src="./assets/icons/button_edit.svg" alt="edit todo" />
+        <img src="./assets/icons/button_edit.svg" alt="Aufgabe löschen" />
       </EditButton>
     </>
   );
@@ -16,7 +16,6 @@ const EditButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-bottom: 4px;
   bottom: 75px;
   right: 15px;
   width: 65px;

@@ -113,7 +113,7 @@ const CloseButton = styled.button`
   border-radius: 50%;
   color: #f5f5f5;
   text-decoration: none;
-  background-color: var(--color-highlight);
+  background-color: var(--color-primary);
   position: fixed;
   top: 20px;
   right: 15px;
@@ -165,7 +165,7 @@ const StyledCloseButton = styled.button`
   border: none;
   border-radius: 8px;
   color: white;
-  background-color: var(--color-highlight);
+  background-color: var(--color-primary);
   padding: 8px 15px 10px;
   &:active {
     background-color: #560808;

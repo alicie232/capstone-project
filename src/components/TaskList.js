@@ -108,7 +108,7 @@ const StyledLabel = styled.label`
 `;
 
 const Checkbox = styled.input`
-  accent-color: var(--color-highlight);
+  accent-color: var(--color-primary);
   transform: scale(1.5);
 `;
 
