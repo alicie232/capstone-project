@@ -29,7 +29,7 @@ const StyledHeader = styled.header`
   border: none;
   border-radius: 15px;
   padding: 30px 40px 20px 20px;
-  margin: 40px;
+  margin: 30px;
   margin-right: 90px;
   text-align: center;
   font-size: 3.5rem;

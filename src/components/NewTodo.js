@@ -16,7 +16,6 @@ const AddTodoButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-bottom: 4px;
   bottom: 75px;
   right: 15px;
   width: 65px;
