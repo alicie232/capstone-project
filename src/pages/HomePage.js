@@ -48,7 +48,7 @@ const StyledSpanOpen = styled.span`
 `;
 
 const StyledSpanFinish = styled.span`
-  color: #63c5da;
+  color: var(--color-action);
   font-size: 1.2rem;
 `;
 
@@ -93,7 +93,7 @@ const CounterOpen = styled.div`
     bottom: 0;
     left: 0;
     background: linear-gradient(-45deg, #f2b5d4 0%, #7bdff2 100%);
-    transform: translate3d(0px, 10px, 0) scale(0.95);
+    transform: translate3d(0, 10px, 0) scale(0.95);
     filter: blur(20px);
     opacity: var(0.7);
     transition: opacity 0.3s;
@@ -135,7 +135,7 @@ const CounterFinished = styled.div`
     bottom: 0;
     left: 0;
     background: linear-gradient(-45deg, #f2b5d4 0%, #7bdff2 100%);
-    transform: translate3d(0px, 10px, 0) scale(0.95);
+    transform: translate3d(0, 10px, 0) scale(0.95);
     filter: blur(20px);
     opacity: var(0.7);
     transition: opacity 0.3s;

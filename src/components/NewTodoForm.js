@@ -87,9 +87,8 @@ const Overlay = styled.div`
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.7);
-  z-index: 1;
+  z-index: 10;
 `;
-
 const ModalStyles = styled.div`
   position: fixed;
   top: 50%;
@@ -98,13 +97,12 @@ const ModalStyles = styled.div`
   background-color: #fff;
   padding: 50px;
   border-radius: 10px;
-  z-index: 1;
+  z-index: 10;
   display: flex;
   flex-direction: column;
   gap: 10px;
   font-size: var(--fontsize-medium);
 `;
-
 const CloseButton = styled.button`
   display: flex;
   justify-content: center;
@@ -120,20 +118,17 @@ const CloseButton = styled.button`
   top: 20px;
   right: 15px;
 `;
-
 const StyledForm = styled.form`
   width: 250px;
   display: flex;
   flex-direction: column;
   gap: 20px;
 `;
-
 const StyledLabelInput = styled.label`
   display: flex;
   flex-direction: column;
   gap: 10px;
 `;
-
 const TaskInput = styled.input`
   padding-left: 5px;
   height: 35px;
@@ -141,13 +136,11 @@ const TaskInput = styled.input`
   border-bottom: 1px solid;
   margin-top: 10px;
 `;
-
 const StyledLabelSelect = styled.label`
   display: flex;
   flex-direction: column;
   gap: 10px;
 `;
-
 const StyledSelect = styled.select`
   background-color: transparent;
   border-radius: 8px;
@@ -157,27 +150,23 @@ const StyledSelect = styled.select`
   font-size: inherit;
   line-height: inherit;
 `;
-
 const StyledSubmitButton = styled.button`
   width: 100%;
   border: none;
   border-radius: 8px;
   color: white;
-  background-color: var(--color-highlight);
+  background-color: var(--color-action);
   padding: 8px 15px 10px;
-
   &:active {
     background-color: #08541f;
   }
 `;
-
 const StyledCloseButton = styled.button`
   border: none;
   border-radius: 8px;
   color: white;
   background-color: var(--color-highlight);
   padding: 8px 15px 10px;
-
   &:active {
     background-color: #560808;
   }
