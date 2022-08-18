@@ -7,27 +7,18 @@ import Navigation from './components/Navigation/Navigation';
 import {Route, Routes} from 'react-router-dom';
 import TaskList from './components/TaskList';
 import CurrentDate from './components/CurrentDate';
-import NewTodo from './components/NewTodo';
 import EditTodo from './components/EditTodo';
+import NewTodo from './components/NewTodo';
 
 const templatesFromLocal = loadFromLocalStorage('TaskTemplates');
 const todosFromLocal = loadFromLocalStorage(new Date().toLocaleDateString());
 
 export default function App() {
+  const [counter, setCounter] = useState({counterTrue: 0, counterFalse: 0});
+
   const [time, setTime] = useState(CurrentDate);
   const [isOpen, setIsOpen] = useState(false);
   const [edit, setEdit] = useState(false);
-  const [taskTemplates] = useState(() => {
-    return templatesFromLocal ?? dailyTodos;
-  });
-  const [todos, setTodos] = useState(() => {
-    if (todosFromLocal === null) {
-      return taskTemplates;
-    } else {
-      return todosFromLocal;
-    }
-  });
-
   const [advices, setAdvices] = useState([]);
 
   async function fetchData() {
@@ -44,9 +35,22 @@ export default function App() {
     fetchData();
   }, []);
 
+  const [taskTemplates] = useState(() => {
+    return templatesFromLocal ?? dailyTodos;
+  });
+
+  const [todos, setTodos] = useState(() => {
+    if (todosFromLocal === null) {
+      return taskTemplates;
+    } else {
+      return todosFromLocal;
+    }
+  });
+
   function handleTodos(event) {
     const todoId = event.target.dataset.todoid;
     const taskId = event.target.dataset.taskid;
+
     updateTodo(todoId, taskId);
   }
 
@@ -128,12 +132,31 @@ export default function App() {
     };
   }, [time]);
 
+  useEffect(() => {
+    const todosFromLocal = loadFromLocalStorage(new Date().toLocaleDateString());
+    const checkedTodos = todosFromLocal?.filter(todos => todos.tasks);
+
+    let counterDone = 0;
+    let counterOpen = 0;
+
+    checkedTodos?.forEach(todos => {
+      const tasksDone = todos.tasks.filter(task => task.isChecked === true);
+      const tasksOpen = todos.tasks.filter(task => task.isChecked === false);
+      counterDone += tasksDone.length;
+      counterOpen += tasksOpen.length;
+    });
+
+    setCounter({counterTrue: counterDone, counterFalse: counterOpen});
+  }, [todos]);
+
   return (
     <>
       <NewTodoForm open={isOpen} onClose={handleCloseForm} insertNewTodo={insertNewTodo} />
+
       <Navigation />
       <Routes>
-        <Route path="/" element={<HomePage advices={advices} time={time} />} />
+        <Route path="/" element={<HomePage advices={advices} time={time} counter={counter} />} />
+
         <Route
           path="all"
           element={
