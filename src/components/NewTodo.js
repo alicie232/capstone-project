@@ -25,7 +25,7 @@ const AddTodoButton = styled.button`
   border-radius: 50%;
   color: #f5f5f5;
   text-decoration: none;
-  background-color: #63c5da;
+  background-color: var(--color-action);
   font-size: 2rem;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   z-index: 1;

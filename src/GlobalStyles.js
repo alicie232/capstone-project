@@ -4,7 +4,8 @@ const styled = {createGlobalStyle};
 
 export default styled.createGlobalStyle`
   :root {
-    --color-highlight: #333333;
+    --color-primary: #333;
+    --color-action: #63c5da;
     --fontsize-small: 1rem;
     --fontsize-medium: 1.3rem;
     --fontsize-large: 1.8rem;

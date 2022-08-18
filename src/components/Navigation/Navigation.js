@@ -28,7 +28,7 @@ const Nav = styled.nav`
 `;
 const StyledLink = styled(NavLink)`
   flex: 1;
-  background: #333;
+  background: var(--color-primary);
   text-decoration: none;
   color: white;
   padding: 10px;
@@ -36,6 +36,6 @@ const StyledLink = styled(NavLink)`
   place-items: center;
   &.active {
     background-color: #c1e4f0;
-    color: #333;
+    color: var(--color-primary);
   }
 `;
