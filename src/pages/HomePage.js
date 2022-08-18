@@ -28,7 +28,7 @@ const StyledHeader = styled.header`
   flex-direction: column;
   border: none;
   border-radius: 15px;
-  padding: 50px 40px 20px 20px;
+  padding: 30px 40px 20px 20px;
   margin: 40px;
   margin-right: 90px;
   text-align: center;
@@ -60,13 +60,12 @@ const Wrapper = styled.div`
 `;
 
 const StyledAdvice = styled.div`
-  padding: 10px;
+  padding: 0 10px 0 10px;
   text-align: center;
   font-size: var(--fontsize-medium);
 `;
 
 const StyledTime = styled.div`
-  padding: 0 0 50px 10px;
   text-align: center;
   font-size: var(--fontsize-medium);
 `;
