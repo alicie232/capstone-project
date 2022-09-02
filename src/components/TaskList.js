@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import DeleteTaskButton from './Button/DeleteTaskButton';
+import DeleteTaskButton from './Buttons/DeleteTaskButton';
 
 export default function TaskList({todos, onTodoCheck, deleteTodo, edit}) {
   return todos.map(todo => {

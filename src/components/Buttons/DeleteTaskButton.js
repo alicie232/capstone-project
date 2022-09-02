@@ -9,7 +9,7 @@ export default function DeleteTaskButton({task, deleteTodo}) {
         deleteTodo(task.id);
       }}
     >
-      <img src="../assets/icons/button-delete.svg" alt="delete" />
+      &times;
     </DeleteButton>
   );
 }
