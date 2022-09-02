@@ -7,7 +7,7 @@ import Navigation from './components/Navigation/Navigation';
 import {Route, Routes} from 'react-router-dom';
 import TaskList from './components/TaskList';
 import CurrentDate from './components/CurrentDate';
-import EditTodo from './components/EditTodo';
+import EditTodo from './components/Buttons/EditTodo';
 import NewTodo from './components/NewTodo';
 
 const templatesFromLocal = loadFromLocalStorage('TaskTemplates');
