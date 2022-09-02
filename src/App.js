@@ -8,7 +8,7 @@ import {Route, Routes} from 'react-router-dom';
 import TaskList from './components/TaskList';
 import CurrentDate from './components/CurrentDate';
 import EditTodo from './components/Buttons/EditTodo';
-import NewTodo from './components/NewTodo';
+import NewTodo from './components/Buttons/NewTodo';
 
 const templatesFromLocal = loadFromLocalStorage('TaskTemplates');
 const todosFromLocal = loadFromLocalStorage(new Date().toLocaleDateString());
